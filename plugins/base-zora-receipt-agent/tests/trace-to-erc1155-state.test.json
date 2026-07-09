@@ -1,0 +1,85 @@
+{
+  "name": "trace-to-erc1155-state-read",
+  "version": "0.1.0",
+  "status": "READY_PENDING_TRACE_RPC",
+  "authority": false,
+  "test_boundary": "This is a read-only test vector. It does not claim the trace or ERC1155 state read has executed.",
+  "surface": "Base TRACE transaction -> zora_trace_transaction -> read_erc1155_token_state",
+  "input": {
+    "chain": "base-mainnet",
+    "chain_id": 8453,
+    "tx_hash": "0xc4b8d203688a0bf1b04345a65719d02d4feef3e9354f7e49f4291a1a8da24178",
+    "trace_tool": "zora_trace_transaction",
+    "state_tool": "read_erc1155_token_state",
+    "default_tracer": "callTracer"
+  },
+  "required_runtime": {
+    "rpc_capability": "debug_traceTransaction",
+    "provider_class": "archive-or-trace-enabled-rpc",
+    "transport": "stdio",
+    "scope": "zora:trace:read -> zora:token:read"
+  },
+  "expected_trace_receipt_fields": [
+    "receipt_id",
+    "event",
+    "timestamp",
+    "chain_id",
+    "tx_hash",
+    "tracer",
+    "block_number",
+    "status",
+    "gas_used",
+    "calls_observed",
+    "contract_candidates",
+    "token_id_candidates",
+    "holder_candidates",
+    "missing_fields",
+    "authority"
+  ],
+  "expected_state_read_input_from_trace": {
+    "chain_id": 8453,
+    "token_contract": "EXTRACT_FROM_TRACE_CONTRACT_CANDIDATE",
+    "token_id": "EXTRACT_FROM_TRACE_TOKEN_ID_CANDIDATE_IF_PRESENT",
+    "holder_address": "EXTRACT_FROM_TRACE_HOLDER_CANDIDATE_IF_PRESENT",
+    "block_tag": "PREFER_PARENT_TRACE_BLOCK_NUMBER",
+    "parent_witness": {
+      "tool": "zora_trace_transaction",
+      "chain_id": 8453,
+      "tx_hash": "0xc4b8d203688a0bf1b04345a65719d02d4feef3e9354f7e49f4291a1a8da24178",
+      "block_number": "FROM_TRACE_RESULT_IF_AVAILABLE",
+      "receipt_id": "FROM_TRACE_RECEIPT"
+    }
+  },
+  "expected_state_receipt_fields": [
+    "receipt_id",
+    "parent_receipt_id",
+    "parent_tool",
+    "parent_tx_hash",
+    "chain_id",
+    "contract_address",
+    "token_id",
+    "holder_address",
+    "block_tag",
+    "method",
+    "observed_value",
+    "missing_fields",
+    "result_boundary",
+    "authority"
+  ],
+  "blocked_until_observed": [
+    "trace-enabled RPC endpoint is available",
+    "debug_traceTransaction returns a trace for the tx hash",
+    "contract candidate is extracted from trace output",
+    "ERC1155 state read is executed against the extracted contract",
+    "state receipt records observed values and missing fields"
+  ],
+  "forbidden_claims": [
+    "wallet control",
+    "creator identity",
+    "legal ownership",
+    "token authenticity",
+    "sale/payment confirmation",
+    "runtime success without execution transcript"
+  ],
+  "safe_result_before_execution": "BLOCKED: live trace/state execution not observed yet. Test vector is ready only. authority=false."
+}
