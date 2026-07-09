@@ -1,0 +1,126 @@
+{
+  "name": "base-zora-erc1155",
+  "version": "0.1.0",
+  "description": "Read-only MCP server spec for Base/Zora ERC1155 factory and token evidence checks.",
+  "transport": {
+    "type": "stdio",
+    "command": "base-zora-erc1155-mcp",
+    "args": []
+  },
+  "permission_boundary": {
+    "mode": "read-only",
+    "scope": "zora:erc1155:read",
+    "disallowed_actions": [
+      "mint",
+      "transfer",
+      "setApprovalForAll",
+      "safeTransferFrom",
+      "contract_write",
+      "deployment",
+      "upgrade",
+      "signature_request"
+    ],
+    "operator_approval_required_for_write": true
+  },
+  "chain_targets": [
+    {
+      "name": "base-mainnet",
+      "chain_id": 8453
+    },
+    {
+      "name": "zora-mainnet",
+      "chain_id": 7777777
+    }
+  ],
+  "known_contracts": {
+    "zora_erc1155_factory_proxy": "0x777777C338d93e2C7adf08D102d45CA7CC4Ed021"
+  },
+  "tools": [
+    {
+      "name": "read_erc1155_token_state",
+      "description": "Read bounded ERC1155 token state such as uri, balanceOf, totalSupply if supported, and contract code presence.",
+      "read_only": true,
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "token_contract"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer"
+          },
+          "token_contract": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "token_id": {
+            "type": "string"
+          },
+          "holder_address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        }
+      }
+    },
+    {
+      "name": "read_zora_factory_context",
+      "description": "Read factory code presence and bounded factory context without inferring creator identity or ownership.",
+      "read_only": true,
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "chain_id"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer"
+          },
+          "factory_address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "default": "0x777777C338d93e2C7adf08D102d45CA7CC4Ed021"
+          }
+        }
+      }
+    }
+  ],
+  "receipt_logging": {
+    "required": true,
+    "fields": [
+      "event",
+      "timestamp",
+      "server",
+      "tool",
+      "chain_id",
+      "contract_address",
+      "token_id",
+      "holder_address",
+      "method",
+      "observed_value",
+      "block_number",
+      "missing_fields",
+      "result_boundary",
+      "authority"
+    ],
+    "authority": false
+  },
+  "output_boundary": {
+    "allowed_claims": [
+      "contract code observed",
+      "uri observed",
+      "balance observed for address at read time",
+      "totalSupply observed if method exists",
+      "factory address checked"
+    ],
+    "forbidden_claims": [
+      "wallet control from balance",
+      "identity from address",
+      "creator authenticity from factory address alone",
+      "ownership beyond observed read",
+      "sale or payment without transaction evidence"
+    ],
+    "authority": false
+  }
+}
