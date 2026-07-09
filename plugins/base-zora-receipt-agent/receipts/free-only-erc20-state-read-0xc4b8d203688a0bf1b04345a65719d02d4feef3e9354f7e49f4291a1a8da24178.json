@@ -1,0 +1,56 @@
+{
+  "receipt_type": "FREE_ONLY_ERC20_STATE_READ",
+  "status": "OBSERVED_ETH_CALL_SURFACE",
+  "authority": false,
+  "no_fake_green": true,
+  "free_only": true,
+  "chain": "base-mainnet",
+  "chain_id": 8453,
+  "source_tx": "0xc4b8d203688a0bf1b04345a65719d02d4feef3e9354f7e49f4291a1a8da24178",
+  "contract": "0x5795735950fd48211a31d8aeccb1de91b210a0b9",
+  "holder": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
+  "trace": {
+    "debug_traceTransaction": "not_used",
+    "internal_calls_observed": false
+  },
+  "calls": [
+    {
+      "jsonrpc": "2.0",
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001f4a4159e280995320574953444f4d3a2052454345495054204d414348494e4500",
+      "id": 1,
+      "label": "name()"
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000055452414345000000000000000000000000000000000000000000000000000000",
+      "id": 2,
+      "label": "symbol()"
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000012",
+      "id": 3,
+      "label": "decimals()"
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": "0x0000000000000000000000000000000000000000033b2e3c9fd0803ce8000000",
+      "id": 4,
+      "label": "totalSupply()"
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+      "id": 5,
+      "label": "balanceOf(address)"
+    }
+  ],
+  "boundary": {
+    "proves_contract_state_read": true,
+    "proves_internal_trace": false,
+    "proves_wallet_control": false,
+    "proves_creator_identity": false,
+    "proves_token_authenticity": false,
+    "proves_payment_or_sale": false
+  }
+}

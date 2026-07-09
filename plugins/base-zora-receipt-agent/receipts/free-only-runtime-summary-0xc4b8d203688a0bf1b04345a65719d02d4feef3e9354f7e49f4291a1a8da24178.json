@@ -1,0 +1,42 @@
+{
+  "receipt_type": "FREE_ONLY_RUNTIME_RECEIPT",
+  "status": "OBSERVED_FREE_RPC_RECEIPT",
+  "authority": false,
+  "no_fake_green": true,
+  "free_only": true,
+  "chain": "base-mainnet",
+  "chain_id": 8453,
+  "tx_hash": "0xc4b8d203688a0bf1b04345a65719d02d4feef3e9354f7e49f4291a1a8da24178",
+  "methods": [
+    "eth_getTransactionByHash",
+    "eth_getTransactionReceipt"
+  ],
+  "trace": {
+    "debug_traceTransaction": "not_used",
+    "internal_calls_observed": false
+  },
+  "observed": {
+    "tx_from": "0x54e2acab04c89a3fe02852bf8dd69ee8f526bc75",
+    "tx_to": "0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789",
+    "block_number": "0x2c36777",
+    "status": "0x1",
+    "gas_used": "0x62d8e",
+    "logs_count": 11,
+    "contract_addresses_in_logs": [
+      "0x2faeb0760d4230ef2ac21496bb4f0b47d634fd4c",
+      "0x4200000000000000000000000000000000000006",
+      "0x5795735950fd48211a31d8aeccb1de91b210a0b9",
+      "0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789",
+      "0x7d928816cc9c462dd7adef911de41535e444cb07",
+      "0xfc01837343cfc2a9ddca9e8a0a19825f6b2f0460"
+    ]
+  },
+  "boundary": {
+    "proves_transaction_receipt_observed": true,
+    "proves_internal_trace": false,
+    "proves_wallet_control": false,
+    "proves_creator_identity": false,
+    "proves_token_authenticity": false,
+    "proves_payment_or_sale": false
+  }
+}
