@@ -1,0 +1,102 @@
+{
+  "name": "github-witness",
+  "version": "0.1.0",
+  "description": "Read-only MCP server spec for GitHub PR witness tasks.",
+  "transport": {
+    "type": "stdio",
+    "command": "github-witness-mcp",
+    "args": []
+  },
+  "auth": {
+    "type": "oauth2-pkce",
+    "discovery_url": "https://github.com/.well-known/oauth-authorization-server",
+    "pkce_method": "S256",
+    "token_holder": "coordinator-only",
+    "subagent_token_exposure": "forbidden"
+  },
+  "permission_boundary": {
+    "mode": "read-only",
+    "minimum_scopes": [
+      "contents:read",
+      "statuses:read",
+      "pull_requests:read"
+    ],
+    "disallowed_scopes": [
+      "contents:write",
+      "pull_requests:write",
+      "actions:write",
+      "administration",
+      "workflow",
+      "delete_repo"
+    ],
+    "write_actions": "forbidden_without_explicit_operator_approval"
+  },
+  "tools": [
+    {
+      "name": "get_pr_metadata",
+      "description": "Read pull request title, body, state, refs, merge status, merge SHA, and timestamps.",
+      "read_only": true,
+      "required_scope": "pull_requests:read"
+    },
+    {
+      "name": "list_pr_changed_files",
+      "description": "List changed files for a pull request.",
+      "read_only": true,
+      "required_scope": "pull_requests:read"
+    },
+    {
+      "name": "get_commit_status",
+      "description": "Read status checks and combined commit status for a commit SHA.",
+      "read_only": true,
+      "required_scope": "statuses:read"
+    },
+    {
+      "name": "fetch_file_at_ref",
+      "description": "Read a file at a branch, tag, or commit ref for evidence mapping.",
+      "read_only": true,
+      "required_scope": "contents:read"
+    }
+  ],
+  "receipt_logging": {
+    "required": true,
+    "events": [
+      "oauth_discovery_observed",
+      "pkce_challenge_created",
+      "token_issued",
+      "tool_invoked",
+      "tool_result_observed",
+      "fork_report_returned"
+    ],
+    "fields": [
+      "event",
+      "timestamp",
+      "server",
+      "tool",
+      "repo",
+      "pr_number",
+      "commit_sha",
+      "scope",
+      "aud",
+      "exp",
+      "result_boundary",
+      "authority"
+    ]
+  },
+  "output_boundary": {
+    "allowed_claims": [
+      "observed PR metadata",
+      "observed changed files",
+      "observed commit status",
+      "missing evidence",
+      "blocked claim"
+    ],
+    "forbidden_claims": [
+      "approval",
+      "merge recommendation without human review",
+      "runtime validation without execution transcript",
+      "production readiness",
+      "truth certification"
+    ],
+    "authority": false
+  }
+}
