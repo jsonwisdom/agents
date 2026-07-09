@@ -54,6 +54,42 @@ For each proposed MCP tool, report:
 
 Do not invoke write-capable tools unless the operator explicitly approves the exact action.
 
+## GitHub witness MCP orchestration loop
+
+Use the GitHub witness MCP server for read-only PR evidence tasks.
+
+Default transport for v0.1 is `stdio`.
+
+Default scope boundary:
+
+- `pull_requests:read`
+- `contents:read`
+- `statuses:read`
+
+Default disallowed actions:
+
+- creating commits
+- updating files
+- posting comments
+- approving reviews
+- requesting merge
+- changing labels
+- rerunning workflows
+- modifying workflow files
+
+Required loop:
+
+1. Define fork task with repo, PR number, commit/ref, and stop condition.
+2. Discover MCP server metadata.
+3. Request OAuth PKCE token only inside the coordinator boundary.
+4. Confirm read-only scope before tool invocation.
+5. Invoke only read-only witness tools.
+6. Record receipt events for discovery, token issuance, tool calls, and observed results.
+7. Return bounded witness report.
+8. Do not promote the report into approval, validation, or merge authority.
+
+If OAuth discovery, PKCE, read-only scope, or result binding fails, return BLOCKED.
+
 ## Reconciliation rules
 
 When a fork returns, summarize:
