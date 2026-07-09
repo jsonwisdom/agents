@@ -1,0 +1,162 @@
+{
+  "name": "base-erc20-state-read",
+  "version": "0.1.0",
+  "description": "Read-only MCP server spec for selector-explicit ERC20 state reads chained from free-only transaction and log surfaces.",
+  "adapter_id": "base-erc20-state-read",
+  "surface_level": "THREE_SURFACE_V0_2",
+  "receipt_type": "FREE_ONLY_THREE_SURFACE_RECEIPT_V0_2",
+  "authority": false,
+  "free_only": true,
+  "no_fake_green": true,
+  "transport": {
+    "type": "stdio",
+    "command": "base-erc20-state-read-mcp",
+    "args": []
+  },
+  "permission_boundary": {
+    "mode": "read-only",
+    "scope": "base:erc20:read",
+    "disallowed_actions": [
+      "approve",
+      "transfer",
+      "transferFrom",
+      "permit",
+      "contract_write",
+      "deployment",
+      "upgrade",
+      "signature_request"
+    ],
+    "operator_approval_required_for_write": true
+  },
+  "chain_targets": [
+    {
+      "name": "base-mainnet",
+      "chain_id": 8453
+    }
+  ],
+  "tools": [
+    {
+      "name": "read_erc20_state_surface",
+      "description": "Read selector-explicit ERC20 metadata and balance surfaces using free eth_call evidence. Intended to run after a TX_RECEIPT_SURFACE and LOG_SURFACE identify an ERC20-style transfer surface.",
+      "read_only": true,
+      "surface_level": "THREE_SURFACE_V0_2",
+      "receipt_type": "FREE_ONLY_THREE_SURFACE_RECEIPT_V0_2",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "token_contract",
+          "holder_address",
+          "parent_tx_hash"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer",
+            "const": 8453
+          },
+          "token_contract": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "holder_address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "parent_tx_hash": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "block_tag": {
+            "type": "string",
+            "description": "Block number or block tag used for the read. Prefer parent receipt block number when available."
+          }
+        }
+      },
+      "rpc_calls": [
+        {
+          "method": "eth_call",
+          "selector": "name()",
+          "selector_hex": "0x06fdde03",
+          "purpose": "observe ERC20 name metadata surface"
+        },
+        {
+          "method": "eth_call",
+          "selector": "symbol()",
+          "selector_hex": "0x95d89b41",
+          "purpose": "observe ERC20 symbol metadata surface"
+        },
+        {
+          "method": "eth_call",
+          "selector": "decimals()",
+          "selector_hex": "0x313ce567",
+          "purpose": "observe ERC20 decimals metadata surface"
+        },
+        {
+          "method": "eth_call",
+          "selector": "totalSupply()",
+          "selector_hex": "0x18160ddd",
+          "purpose": "observe ERC20 totalSupply state surface"
+        },
+        {
+          "method": "eth_call",
+          "selector": "balanceOf(address)",
+          "selector_hex": "0x70a08231",
+          "purpose": "observe ERC20 balance surface for the supplied holder address"
+        }
+      ]
+    }
+  ],
+  "receipt_logging": {
+    "required": true,
+    "fields": [
+      "receipt_type",
+      "status",
+      "authority",
+      "free_only",
+      "no_fake_green",
+      "chain",
+      "chain_id",
+      "source_tx",
+      "contract",
+      "holder",
+      "trace",
+      "calls",
+      "boundary"
+    ],
+    "authority": false,
+    "free_only": true,
+    "no_fake_green": true
+  },
+  "output_boundary": {
+    "allowed_claims": [
+      "transaction receipt observed",
+      "logs observed and classified",
+      "selector-explicit state read observed",
+      "name observed",
+      "symbol observed",
+      "decimals observed",
+      "totalSupply observed",
+      "balanceOf observed for address at read time"
+    ],
+    "forbidden_claims": [
+      "wallet control from balance",
+      "legal ownership from balance",
+      "creator identity from address",
+      "token authenticity from metadata alone",
+      "sale or payment semantics",
+      "internal call structure",
+      "trace semantics"
+    ],
+    "authority": false,
+    "free_only": true,
+    "no_fake_green": true
+  },
+  "boundary": {
+    "debug_traceTransaction": "not_used",
+    "internal_calls_observed": false,
+    "wallet_control_claim": false,
+    "creator_identity_claim": false,
+    "token_authenticity_claim": false,
+    "payment_or_sale_claim": false
+  }
+}
