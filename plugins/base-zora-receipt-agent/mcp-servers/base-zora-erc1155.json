@@ -1,7 +1,7 @@
 {
   "name": "base-zora-erc1155",
   "version": "0.1.0",
-  "description": "Read-only MCP server spec for Base/Zora ERC1155 factory and token evidence checks.",
+  "description": "Read-only MCP server spec for Base/Zora ERC1155 factory and token evidence checks chained from trace receipts.",
   "transport": {
     "type": "stdio",
     "command": "base-zora-erc1155-mcp",
@@ -9,7 +9,8 @@
   },
   "permission_boundary": {
     "mode": "read-only",
-    "scope": "zora:erc1155:read",
+    "scope": "zora:token:read",
+    "legacy_scope_alias": "zora:erc1155:read",
     "disallowed_actions": [
       "mint",
       "transfer",
@@ -38,13 +39,15 @@
   "tools": [
     {
       "name": "read_erc1155_token_state",
-      "description": "Read bounded ERC1155 token state such as uri, balanceOf, totalSupply if supported, and contract code presence.",
+      "description": "Read bounded ERC1155 token state such as uri, balanceOf, totalSupply if supported, and contract code presence. Intended to run after a parent zora_trace_transaction witness.",
       "read_only": true,
+      "parent_witness_required": true,
       "input_schema": {
         "type": "object",
         "required": [
           "chain_id",
-          "token_contract"
+          "token_contract",
+          "parent_witness"
         ],
         "properties": {
           "chain_id": {
@@ -60,9 +63,63 @@
           "holder_address": {
             "type": "string",
             "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "block_tag": {
+            "type": "string",
+            "description": "Block number or block tag used for the read. Prefer parent witness block number when available."
+          },
+          "parent_witness": {
+            "type": "object",
+            "required": [
+              "tool",
+              "chain_id",
+              "tx_hash",
+              "receipt_id"
+            ],
+            "properties": {
+              "tool": {
+                "type": "string",
+                "const": "zora_trace_transaction"
+              },
+              "chain_id": {
+                "type": "integer"
+              },
+              "tx_hash": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{64}$"
+              },
+              "block_number": {
+                "type": "integer"
+              },
+              "receipt_id": {
+                "type": "string"
+              }
+            }
           }
         }
-      }
+      },
+      "rpc_calls": [
+        {
+          "method": "eth_getCode",
+          "purpose": "observe contract code presence"
+        },
+        {
+          "method": "eth_call",
+          "selector": "uri(uint256)",
+          "purpose": "observe token URI when token_id is provided"
+        },
+        {
+          "method": "eth_call",
+          "selector": "balanceOf(address,uint256)",
+          "purpose": "observe holder balance when holder_address and token_id are provided"
+        },
+        {
+          "method": "eth_call",
+          "selector": "totalSupply(uint256)",
+          "optional": true,
+          "purpose": "observe supply if implemented"
+        }
+      ]
     },
     {
       "name": "read_zora_factory_context",
@@ -86,6 +143,22 @@
       }
     }
   ],
+  "chaining": {
+    "allowed_parent_tools": [
+      "zora_trace_transaction"
+    ],
+    "required_parent_fields": [
+      "receipt_id",
+      "chain_id",
+      "tx_hash"
+    ],
+    "recommended_parent_fields": [
+      "block_number",
+      "calls_observed",
+      "contract_candidates"
+    ],
+    "chain_rule": "trace receipt may suggest token_contract, token_id, and holder_address candidates, but ERC1155 state read must record its own observed values and cannot inherit proof semantics from the parent."
+  },
   "receipt_logging": {
     "required": true,
     "fields": [
@@ -93,10 +166,14 @@
       "timestamp",
       "server",
       "tool",
+      "parent_receipt_id",
+      "parent_tool",
+      "parent_tx_hash",
       "chain_id",
       "contract_address",
       "token_id",
       "holder_address",
+      "block_tag",
       "method",
       "observed_value",
       "block_number",
@@ -112,14 +189,16 @@
       "uri observed",
       "balance observed for address at read time",
       "totalSupply observed if method exists",
-      "factory address checked"
+      "factory address checked",
+      "state read chained from parent trace receipt"
     ],
     "forbidden_claims": [
       "wallet control from balance",
       "identity from address",
       "creator authenticity from factory address alone",
       "ownership beyond observed read",
-      "sale or payment without transaction evidence"
+      "sale or payment without transaction evidence",
+      "parent trace proves current state"
     ],
     "authority": false
   }
