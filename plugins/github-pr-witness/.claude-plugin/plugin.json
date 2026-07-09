@@ -1,0 +1,25 @@
+{
+  "name": "github-pr-witness",
+  "version": "0.1.0",
+  "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments.",
+  "author": "jsonwisdom",
+  "license": "MIT",
+  "agents": [
+    "agents/github-pr-witness.md"
+  ],
+  "commands": [
+    "commands/witness-pr.md"
+  ],
+  "skills": [
+    "skills/pr-evidence-map.md"
+  ],
+  "keywords": [
+    "github",
+    "pull-request",
+    "witness",
+    "evidence",
+    "governance",
+    "ci",
+    "review"
+  ]
+}
