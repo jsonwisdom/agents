@@ -1,0 +1,142 @@
+{
+  "name": "zora-trace-transaction",
+  "version": "0.1.0",
+  "description": "Read-only MCP server spec for Base/Zora transaction tracing via debug_traceTransaction.",
+  "transport": {
+    "type": "stdio",
+    "command": "zora-trace-mcp",
+    "args": []
+  },
+  "permission_boundary": {
+    "mode": "read-only",
+    "scope": "zora:trace:read",
+    "disallowed_actions": [
+      "eth_sendTransaction",
+      "personal_sign",
+      "eth_sign",
+      "wallet_switchEthereumChain",
+      "contract_write",
+      "deployment",
+      "mint",
+      "transfer",
+      "approval"
+    ],
+    "operator_approval_required_for_write": true
+  },
+  "rpc": {
+    "method": "debug_traceTransaction",
+    "required_node_capability": "archive-or-trace-enabled-rpc",
+    "supported_tracers": [
+      "callTracer",
+      "prestateTracer"
+    ],
+    "default_tracer": "callTracer",
+    "chain_targets": [
+      {
+        "name": "base-mainnet",
+        "chain_id": 8453
+      },
+      {
+        "name": "zora-mainnet",
+        "chain_id": 7777777
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "zora_trace_transaction",
+      "description": "Trace a transaction and return bounded call tree evidence for mints, transfers, reverts, gas, and internal calls.",
+      "read_only": true,
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "tx_hash"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer"
+          },
+          "tx_hash": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "tracer": {
+            "type": "string",
+            "enum": [
+              "callTracer",
+              "prestateTracer"
+            ],
+            "default": "callTracer"
+          },
+          "timeout_ms": {
+            "type": "integer",
+            "default": 30000
+          }
+        }
+      }
+    }
+  ],
+  "receipt_logging": {
+    "required": true,
+    "fields": [
+      "event",
+      "timestamp",
+      "server",
+      "tool",
+      "chain_id",
+      "tx_hash",
+      "tracer",
+      "rpc_provider_class",
+      "block_number",
+      "status",
+      "gas_used",
+      "revert_reason",
+      "calls_observed",
+      "missing_fields",
+      "authority"
+    ],
+    "authority": false
+  },
+  "error_boundaries": [
+    {
+      "condition": "rpc_does_not_support_debug_traceTransaction",
+      "status": "BLOCKED",
+      "message": "Trace unavailable from selected RPC provider. Use archive or trace-enabled endpoint."
+    },
+    {
+      "condition": "transaction_not_found",
+      "status": "BLOCKED",
+      "message": "Transaction hash not found on selected chain."
+    },
+    {
+      "condition": "trace_missing_block_context",
+      "status": "PASS_WITH_NOTES",
+      "message": "Trace observed but block context incomplete. Do not claim full replay."
+    },
+    {
+      "condition": "claim_exceeds_trace",
+      "status": "BLOCKED",
+      "message": "Claim exceeds observed trace evidence."
+    }
+  ],
+  "output_boundary": {
+    "allowed_claims": [
+      "transaction trace observed",
+      "internal calls observed",
+      "gas usage observed",
+      "revert observed",
+      "mint-like call observed",
+      "transfer-like call observed"
+    ],
+    "forbidden_claims": [
+      "wallet control",
+      "creator identity",
+      "token authenticity",
+      "sale success",
+      "ownership beyond traced state",
+      "production validation"
+    ],
+    "authority": false
+  }
+}
