@@ -1,0 +1,25 @@
+{
+  "receipt_type": "BLOCKED_TRACE_RPC",
+  "status": "BLOCKED_TIER_LIMIT",
+  "authority": false,
+  "chain": "base-mainnet",
+  "chain_id": 8453,
+  "tx_hash": "0xc4b8d203688a0bf1b04345a65719d02d4feef3e9354f7e49f4291a1a8da24178",
+  "method": "debug_traceTransaction",
+  "tracer": "callTracer",
+  "observed_error": {
+    "code": -32600,
+    "message": "debug_traceTransaction is not available on the Free tier - upgrade to Pay As You Go, or Enterprise for access."
+  },
+  "boundary": {
+    "trace_observed": false,
+    "state_read_executed": false,
+    "runtime_validation": false,
+    "reason": "RPC provider authenticated but trace method is unavailable on current plan."
+  },
+  "next_admissible_evidence": [
+    "trace-enabled Base RPC output",
+    "Pay-as-you-go or archive/trace provider result",
+    "alternative provider result supporting debug_traceTransaction"
+  ]
+}
