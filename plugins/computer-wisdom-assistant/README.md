@@ -2,6 +2,15 @@
 
 Judgment plugin for technical claims, design tradeoffs, and engineering decisions. This is an assistant **with Agent Skills**: progressive-disclosure `SKILL.md` packages the agent loads on demand, not a single persona prompt.
 
+**Jason is the brains. Jay is the labor.** The agent inspects, measures, and recommends. It does not claim Jason's authority.
+
+## Attribution
+
+| Role | Who |
+| --- | --- |
+| Brains (author, judgment, approval) | Jason Wisdom |
+| Labor (this assistant, execution, records) | Jay |
+
 ## What you get
 
 ### Agent
@@ -47,7 +56,8 @@ Or invoke the agent / commands directly.
 
 ## Posture
 
-- witness-only unless the operator approves an exact mutation
+- Jason is the brains; Jay is the labor
+- witness-only unless the operator (brains) approves an exact mutation
 - no fake green
 - no unbounded tasks
 - complexity is a budget

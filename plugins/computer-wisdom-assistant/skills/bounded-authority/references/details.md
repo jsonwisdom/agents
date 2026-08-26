@@ -2,6 +2,20 @@
 
 Use this file when a task is large, involves MCP, or the operator is about to grant write access.
 
+## Brains vs labor
+
+Jason (brains) holds judgment and approval. Jay (labor) holds the shovel.
+
+A later session should be able to see which role produced which line:
+
+```text
+role=labor (Jay)
+brains=Jason
+authority=false
+```
+
+If a record says "we decided" without naming brains, it is smuggling authority. Rewrite to "labor recommends; pending brains approval" or attach the operator's exact-action gate.
+
 ## Stop-condition recipes
 
 A stop condition is a sentence that, when true, ends the work.

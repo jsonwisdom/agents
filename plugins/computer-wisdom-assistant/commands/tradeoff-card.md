@@ -71,6 +71,8 @@ Recommendation:
 - ...
 
 Final Determination:
+- role=labor (Jay)
+- brains=Jason
 - authority=false
 ```
 

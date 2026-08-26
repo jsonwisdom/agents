@@ -1184,10 +1184,10 @@
     {
       "name": "computer-wisdom-assistant",
       "source": "./plugins/computer-wisdom-assistant",
-      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions, with Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets",
-      "version": "1.0.0",
+      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions, with Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets. Jason is the brains; Jay is the labor.",
+      "version": "1.0.1",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",
@@ -1212,7 +1212,7 @@
       "description": "Witness-only coordination for bounded background subagent research and debug tasks",
       "version": "0.1.0",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",
@@ -1235,7 +1235,7 @@
       "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims",
       "version": "0.1.0",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",
@@ -1257,7 +1257,7 @@
       "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments",
       "version": "0.1.0",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",
@@ -1279,7 +1279,7 @@
       "description": "Witness-only public-record claim boundary checks with replayable source paths",
       "version": "0.1.0",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",
@@ -1301,7 +1301,7 @@
       "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims",
       "version": "0.1.0",
       "author": {
-        "name": "Jay Wisdom",
+        "name": "Jason Wisdom",
         "url": "https://github.com/jsonwisdom"
       },
       "homepage": "https://github.com/jsonwisdom",

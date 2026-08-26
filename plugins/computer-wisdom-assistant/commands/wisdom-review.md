@@ -80,6 +80,8 @@ Next Measurement:
 - ...
 
 Final Determination:
+- role=labor (Jay)
+- brains=Jason
 - authority=false
 ```
 
