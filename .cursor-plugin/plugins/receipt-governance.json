@@ -1,0 +1,11 @@
+{
+  "name": "receipt-governance",
+  "displayName": "Receipt Governance",
+  "version": "0.1.0",
+  "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+  "author": {
+    "name": "jsonwisdom",
+    "email": ""
+  },
+  "license": "MIT"
+}

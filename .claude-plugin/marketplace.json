@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 91 marketplace plugins, 199 local specialized agents, and 162 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 170 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -1179,6 +1179,192 @@
         "human-approval",
         "pr-review",
         "ci-guard"
+      ]
+    },
+    {
+      "name": "computer-wisdom-assistant",
+      "source": "./plugins/computer-wisdom-assistant",
+      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions, with Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets. Jason is the brains; Jay is the labor.",
+      "version": "1.0.1",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "wisdom",
+        "judgment",
+        "evidence",
+        "receipts",
+        "governance",
+        "tradeoffs",
+        "complexity",
+        "authority",
+        "replayable",
+        "agent-skills"
+      ]
+    },
+    {
+      "name": "x-wisdom",
+      "source": "./plugins/x-wisdom",
+      "description": "Wisdom-bound X (Twitter) reader and poster. Reads are observed evidence; posts need Jason's exact-action approval. Jason is the brains; Jay is the labor.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "x",
+        "twitter",
+        "posts",
+        "reads",
+        "wisdom",
+        "governance",
+        "approval",
+        "labor",
+        "brains",
+        "agent-skills"
+      ]
+    },
+    {
+      "name": "wisdom-team",
+      "source": "./plugins/wisdom-team",
+      "description": "Reverse-replay locators into a wisdom team roster and name the seats in the same turn. Jason is the brains; Jay is the labor. Smallest covering set.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "wisdom",
+        "team",
+        "roster",
+        "reverse-replay",
+        "locators",
+        "governance",
+        "brains",
+        "labor",
+        "agent-skills"
+      ]
+    },
+    {
+      "name": "agent-fork-coordinator",
+      "source": "./plugins/agent-fork-coordinator",
+      "description": "Witness-only coordination for bounded background subagent research and debug tasks",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "subagents",
+        "fork",
+        "coordination",
+        "mcp",
+        "research",
+        "debugging",
+        "governance",
+        "witness-only"
+      ]
+    },
+    {
+      "name": "receipt-governance",
+      "source": "./plugins/receipt-governance",
+      "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "governance",
+        "receipts",
+        "pull-request-review",
+        "ci",
+        "audit",
+        "verification",
+        "no-fake-green"
+      ]
+    },
+    {
+      "name": "github-pr-witness",
+      "source": "./plugins/github-pr-witness",
+      "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "github",
+        "pull-request",
+        "witness",
+        "evidence",
+        "governance",
+        "ci",
+        "review"
+      ]
+    },
+    {
+      "name": "alms-public-record-verifier",
+      "source": "./plugins/alms-public-record-verifier",
+      "description": "Witness-only public-record claim boundary checks with replayable source paths",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "public-records",
+        "verification",
+        "governance",
+        "evidence",
+        "claims",
+        "audit",
+        "alms"
+      ]
+    },
+    {
+      "name": "base-zora-receipt-agent",
+      "source": "./plugins/base-zora-receipt-agent",
+      "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "base",
+        "zora",
+        "onchain",
+        "blockchain",
+        "receipts",
+        "eas",
+        "ens",
+        "governance"
       ]
     },
     {

@@ -1,0 +1,31 @@
+{
+  "name": "computer-wisdom-assistant",
+  "version": "1.0.1",
+  "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets. Jason is the brains; Jay is the labor.",
+  "skills": "./skills/",
+  "author": {
+    "name": "Jason Wisdom",
+    "url": "https://github.com/jsonwisdom"
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "wisdom",
+    "judgment",
+    "evidence",
+    "receipts",
+    "governance",
+    "tradeoffs",
+    "complexity",
+    "authority",
+    "replayable",
+    "agent-skills",
+    "brains",
+    "labor"
+  ],
+  "interface": {
+    "displayName": "Computer Wisdom Assistant",
+    "shortDescription": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus\u2026",
+    "category": "Coding"
+  }
+}

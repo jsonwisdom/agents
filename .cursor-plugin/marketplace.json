@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 91 marketplace plugins, 199 local specialized agents, and 162 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 170 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -18,6 +18,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "agent-fork-coordinator",
+      "source": "./plugins/agent-fork-coordinator",
+      "version": "0.1.0",
+      "description": "Witness-only coordination for bounded background subagent research and debug tasks.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -40,6 +51,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "alms-public-record-verifier",
+      "source": "./plugins/alms-public-record-verifier",
+      "version": "0.1.0",
+      "description": "Witness-only public-record claim boundary checks with replayable source paths.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -106,6 +128,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "base-zora-receipt-agent",
+      "source": "./plugins/base-zora-receipt-agent",
+      "version": "0.1.0",
+      "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -239,6 +272,18 @@
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
       },
+      "license": "MIT"
+    },
+    {
+      "name": "computer-wisdom-assistant",
+      "source": "./plugins/computer-wisdom-assistant",
+      "version": "1.0.1",
+      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets. Jason is the brains; Jay is the labor.",
+      "author": {
+        "name": "Jason Wisdom",
+        "email": ""
+      },
+      "homepage": "https://github.com/jsonwisdom",
       "license": "MIT"
     },
     {
@@ -551,6 +596,17 @@
       "license": "MIT"
     },
     {
+      "name": "github-pr-witness",
+      "source": "./plugins/github-pr-witness",
+      "version": "0.1.0",
+      "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
+      },
+      "license": "MIT"
+    },
+    {
       "name": "hermes-tweet",
       "source": "./plugins/hermes-tweet",
       "version": "0.1.6",
@@ -754,6 +810,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "receipt-governance",
+      "source": "./plugins/receipt-governance",
+      "version": "0.1.0",
+      "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -978,6 +1045,30 @@
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
       },
+      "license": "MIT"
+    },
+    {
+      "name": "wisdom-team",
+      "source": "./plugins/wisdom-team",
+      "version": "1.0.0",
+      "description": "Reverse-replay locators into a wisdom team roster and name the seats in the same turn. Jason is the brains; Jay is the labor. Smallest covering set; no extra seats.",
+      "author": {
+        "name": "Jason Wisdom",
+        "email": ""
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT"
+    },
+    {
+      "name": "x-wisdom",
+      "source": "./plugins/x-wisdom",
+      "version": "1.0.0",
+      "description": "Wisdom-bound X (Twitter) reader and poster. Jay is the labor: reads are observed evidence, posts are publication and need Jason's exact-action approval. Jason is the brains.",
+      "author": {
+        "name": "Jason Wisdom",
+        "email": ""
+      },
+      "homepage": "https://github.com/jsonwisdom",
       "license": "MIT"
     }
   ]

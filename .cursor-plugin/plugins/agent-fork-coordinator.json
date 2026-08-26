@@ -1,0 +1,11 @@
+{
+  "name": "agent-fork-coordinator",
+  "displayName": "Agent Fork Coordinator",
+  "version": "0.1.0",
+  "description": "Witness-only coordination for bounded background subagent research and debug tasks.",
+  "author": {
+    "name": "jsonwisdom",
+    "email": ""
+  },
+  "license": "MIT"
+}

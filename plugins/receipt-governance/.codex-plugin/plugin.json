@@ -1,0 +1,22 @@
+{
+  "name": "receipt-governance",
+  "version": "0.1.0",
+  "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+  "skills": "./skills/",
+  "author": "jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "governance",
+    "receipts",
+    "pull-request-review",
+    "ci",
+    "audit",
+    "verification",
+    "no-fake-green"
+  ],
+  "interface": {
+    "displayName": "Receipt Governance",
+    "shortDescription": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+    "category": "Coding"
+  }
+}

@@ -1,6 +1,6 @@
 # Agent Reference
 
-Complete reference for all **199 local specialized AI agents** organized by category with model assignments.
+Complete reference for all **207 local specialized AI agents** organized by category with model assignments.
 
 ## Agent Categories
 
@@ -221,6 +221,14 @@ Complete reference for all **199 local specialized AI agents** organized by cate
 | [payment-integration](../plugins/payment-processing/agents/payment-integration.md)      | sonnet | Payment processor integration (Stripe, PayPal)          |
 | [legacy-modernizer](../plugins/framework-migration/agents/legacy-modernizer.md)         | sonnet | Legacy code refactoring and modernization               |
 | [context-manager](../plugins/agent-orchestration/agents/context-manager.md)             | haiku  | Multi-agent context management                          |
+| [computer-wisdom-assistant](../plugins/computer-wisdom-assistant/agents/computer-wisdom-assistant.md) | inherit | Evidence-first judgment, bounded authority, replayable determinations, complexity budgets |
+| [fork-coordinator](../plugins/agent-fork-coordinator/agents/fork-coordinator.md) | inherit | Witness-only bounded subagent research and debug coordination |
+| [receipt-auditor](../plugins/receipt-governance/agents/receipt-auditor.md) | inherit | Receipt-first review of PRs, commits, workflows, and technical claims |
+| [github-pr-witness](../plugins/github-pr-witness/agents/github-pr-witness.md) | inherit | Witness-only GitHub PR evidence reports |
+| [alms-public-record-verifier](../plugins/alms-public-record-verifier/agents/alms-public-record-verifier.md) | inherit | Public-record claim boundary checks with replayable source paths |
+| [base-zora-receipt-agent](../plugins/base-zora-receipt-agent/agents/base-zora-receipt-agent.md) | inherit | On-chain receipt checks for Base, Zora, ENS, EAS, and public chain claims |
+| [x-wisdom-assistant](../plugins/x-wisdom/agents/x-wisdom-assistant.md) | inherit | Wisdom-bound X reads and approval-gated posts |
+| [wisdom-team-assistant](../plugins/wisdom-team/agents/wisdom-team-assistant.md) | inherit | Reverse-replay locators into a named wisdom roster in the same turn |
 
 ## Model Configuration
 
@@ -234,7 +242,7 @@ Agents are assigned to specific Claude models based on task complexity and compu
 | Opus    | 54          | Critical architecture, security, code review, production coding |
 | Sonnet  | 68          | Complex tasks, support with intelligence                        |
 | Haiku   | 25          | Fast operational tasks                                          |
-| Inherit | 52          | Complex tasks where the user chooses the model at runtime       |
+| Inherit | 60          | Complex tasks where the user chooses the model at runtime       |
 
 ### Model Selection Criteria
 
