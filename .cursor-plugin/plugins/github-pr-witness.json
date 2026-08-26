@@ -1,0 +1,11 @@
+{
+  "name": "github-pr-witness",
+  "displayName": "Github Pr Witness",
+  "version": "0.1.0",
+  "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments.",
+  "author": {
+    "name": "jsonwisdom",
+    "email": ""
+  },
+  "license": "MIT"
+}

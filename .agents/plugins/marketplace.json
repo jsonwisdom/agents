@@ -14,6 +14,18 @@
       "category": "Coding"
     },
     {
+      "name": "agent-fork-coordinator",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agent-fork-coordinator"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
       "name": "agent-orchestration",
       "source": {
         "source": "local",
@@ -30,6 +42,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/agent-teams"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
+      "name": "alms-public-record-verifier",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alms-public-record-verifier"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -102,6 +126,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/backend-development"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
+      "name": "base-zora-receipt-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/base-zora-receipt-agent"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -246,6 +282,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/comprehensive-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
+      "name": "computer-wisdom-assistant",
+      "source": {
+        "source": "local",
+        "path": "./plugins/computer-wisdom-assistant"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -590,6 +638,18 @@
       "category": "Coding"
     },
     {
+      "name": "github-pr-witness",
+      "source": {
+        "source": "local",
+        "path": "./plugins/github-pr-witness"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
       "name": "hermes-tweet",
       "source": {
         "source": "local",
@@ -810,6 +870,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/quantitative-trading"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
+      "name": "receipt-governance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/receipt-governance"
       },
       "policy": {
         "installation": "AVAILABLE",

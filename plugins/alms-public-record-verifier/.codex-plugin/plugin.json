@@ -1,0 +1,22 @@
+{
+  "name": "alms-public-record-verifier",
+  "version": "0.1.0",
+  "description": "Witness-only public-record claim boundary checks with replayable source paths.",
+  "skills": "./skills/",
+  "author": "jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "public-records",
+    "verification",
+    "governance",
+    "evidence",
+    "claims",
+    "audit",
+    "alms"
+  ],
+  "interface": {
+    "displayName": "Alms Public Record Verifier",
+    "shortDescription": "Witness-only public-record claim boundary checks with replayable source paths.",
+    "category": "Coding"
+  }
+}

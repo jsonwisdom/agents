@@ -1,0 +1,23 @@
+{
+  "name": "computer-wisdom-assistant",
+  "version": "1.0.0",
+  "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets.",
+  "author": {
+    "name": "Jay Wisdom",
+    "url": "https://github.com/jsonwisdom"
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "wisdom",
+    "judgment",
+    "evidence",
+    "receipts",
+    "governance",
+    "tradeoffs",
+    "complexity",
+    "authority",
+    "replayable",
+    "agent-skills"
+  ]
+}

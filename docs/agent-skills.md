@@ -1,6 +1,6 @@
 # Agent Skills
 
-Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **162 local specialized skills** across 46 plugins, enabling progressive disclosure and efficient token usage.
+Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **166 local specialized skills** across 47 plugins, enabling progressive disclosure and efficient token usage.
 
 ## Overview
 
@@ -342,6 +342,15 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **protect-mcp-setup**  | Configure Cedar policy enforcement and Ed25519 signed receipts for tool calls; example policies for research/dev/production  |
 
+### Computer Wisdom Assistant (4 skills)
+
+| Skill                       | Description                                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **evidence-first-judgment** | Judge technical claims against observable evidence instead of intention or confident wording         |
+| **bounded-authority**       | Bound task scope, tools, stop conditions, and mutation rights before work starts                     |
+| **replayable-reasoning**    | Write determinations another session can replay from artifacts, not chat memory                      |
+| **complexity-budget**       | Spend complexity only on essential difficulty; prefer composition and refuse speculative layers      |
+
 ### Social Publishing (1 skill)
 
 | Skill                  | Description                                                                                                              |
@@ -392,7 +401,7 @@ fastapi-templates skill → Supplies production-ready templates
 
 ## Specification Compliance
 
-All 162 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
+All 166 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
 
 - ✓ Required `name` field (hyphen-case)
 - ✓ Required `description` field with "Use when" clause
