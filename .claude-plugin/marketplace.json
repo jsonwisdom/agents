@@ -1273,6 +1273,71 @@
       },
       "license": "MIT",
       "category": "quality"
+    },
+    {
+      "name": "agent-fork-coordinator",
+      "source": "./plugins/agent-fork-coordinator",
+      "description": "Witness-only coordination for bounded background subagent research and debug tasks.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom/agents",
+      "license": "MIT",
+      "category": "governance"
+    },
+    {
+      "name": "alms-public-record-verifier",
+      "source": "./plugins/alms-public-record-verifier",
+      "description": "Witness-only public-record claim boundary checks with replayable source paths.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom/agents",
+      "license": "MIT",
+      "category": "governance"
+    },
+    {
+      "name": "base-zora-receipt-agent",
+      "source": "./plugins/base-zora-receipt-agent",
+      "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom/agents",
+      "license": "MIT",
+      "category": "governance"
+    },
+    {
+      "name": "github-pr-witness",
+      "source": "./plugins/github-pr-witness",
+      "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom/agents",
+      "license": "MIT",
+      "category": "governance"
+    },
+    {
+      "name": "receipt-governance",
+      "source": "./plugins/receipt-governance",
+      "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom/agents",
+      "license": "MIT",
+      "category": "governance"
     }
   ]
 }

@@ -1,3 +1,9 @@
+---
+name: github-pr-witness-github-pr-witness
+description: Use PROACTIVELY when producing a witness-only evidence summary of a GitHub pull request.
+model: inherit
+---
+
 # GitHub PR Witness
 
 You are a GitHub pull request witness agent.
