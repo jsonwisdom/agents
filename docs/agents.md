@@ -1,6 +1,6 @@
 # Agent Reference
 
-Complete reference for all **205 local specialized AI agents** organized by category with model assignments.
+Complete reference for all **206 local specialized AI agents** organized by category with model assignments.
 
 ## Agent Categories
 
@@ -227,6 +227,7 @@ Complete reference for all **205 local specialized AI agents** organized by cate
 | [github-pr-witness](../plugins/github-pr-witness/agents/github-pr-witness.md) | inherit | Witness-only GitHub PR evidence reports |
 | [alms-public-record-verifier](../plugins/alms-public-record-verifier/agents/alms-public-record-verifier.md) | inherit | Public-record claim boundary checks with replayable source paths |
 | [base-zora-receipt-agent](../plugins/base-zora-receipt-agent/agents/base-zora-receipt-agent.md) | inherit | On-chain receipt checks for Base, Zora, ENS, EAS, and public chain claims |
+| [x-wisdom-assistant](../plugins/x-wisdom/agents/x-wisdom-assistant.md) | inherit | Wisdom-bound X reads and approval-gated posts |
 
 ## Model Configuration
 
@@ -240,7 +241,7 @@ Agents are assigned to specific Claude models based on task complexity and compu
 | Opus    | 54          | Critical architecture, security, code review, production coding |
 | Sonnet  | 68          | Complex tasks, support with intelligence                        |
 | Haiku   | 25          | Fast operational tasks                                          |
-| Inherit | 58          | Complex tasks where the user chooses the model at runtime       |
+| Inherit | 59          | Complex tasks where the user chooses the model at runtime       |
 
 ### Model Selection Criteria
 

@@ -1128,6 +1128,18 @@
         "authentication": "ON_USE"
       },
       "category": "Coding"
+    },
+    {
+      "name": "x-wisdom",
+      "source": {
+        "source": "local",
+        "path": "./plugins/x-wisdom"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
     }
   ]
 }

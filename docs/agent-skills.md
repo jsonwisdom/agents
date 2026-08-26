@@ -1,6 +1,6 @@
 # Agent Skills
 
-Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **166 local specialized skills** across 47 plugins, enabling progressive disclosure and efficient token usage.
+Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **168 local specialized skills** across 48 plugins, enabling progressive disclosure and efficient token usage.
 
 ## Overview
 
@@ -351,6 +351,13 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | **replayable-reasoning**    | Write determinations another session can replay from artifacts, not chat memory                      |
 | **complexity-budget**       | Spend complexity only on essential difficulty; prefer composition and refuse speculative layers      |
 
+### X Wisdom (2 skills)
+
+| Skill               | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| **x-read-evidence** | Read X posts as observed locators, not as proof of the world                |
+| **x-post-gate**     | Draft X posts as labor; wait for Jason's exact-action approval before send  |
+
 ### Social Publishing (1 skill)
 
 | Skill                  | Description                                                                                                              |
@@ -401,7 +408,7 @@ fastapi-templates skill → Supplies production-ready templates
 
 ## Specification Compliance
 
-All 166 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
+All 168 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
 
 - ✓ Required `name` field (hyphen-case)
 - ✓ Required `description` field with "Use when" clause

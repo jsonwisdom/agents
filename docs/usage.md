@@ -155,6 +155,8 @@ Claude Code automatically selects and coordinates the appropriate agents based o
 | -------------------------------------------------- | -------------------------------------------------------- |
 | `/computer-wisdom-assistant:wisdom-review`         | Evidence-first review of a claim, diff, or "done" statement |
 | `/computer-wisdom-assistant:tradeoff-card`         | Replayable tradeoff card with complexity cost and required evidence |
+| `/x-wisdom:x-read`                                 | Observed-evidence report from public X posts, threads, or search |
+| `/x-wisdom:x-draft-post`                           | Exact-text X draft with a publication approval gate |
 | `/agent-fork-coordinator:fork-task`                | Bound a witness-only side task |
 | `/receipt-governance:review-pr`                    | Receipt-first PR/claim review |
 | `/github-pr-witness:witness-pr`                    | GitHub PR evidence report |
@@ -397,11 +399,11 @@ User: "Implement Kubernetes deployment with Helm"
 → Result: Production-grade K8s manifests with Helm charts
 ```
 
-See [Agent Skills](./agent-skills.md) for details on the 166 specialized skills.
+See [Agent Skills](./agent-skills.md) for details on the 168 specialized skills.
 
 ## See Also
 
 - [Agent Skills](./agent-skills.md) - Specialized knowledge packages
 - [Agent Reference](./agents.md) - Complete agent catalog
-- [Plugin Reference](./plugins.md) - All 98 marketplace plugins
+- [Plugin Reference](./plugins.md) - All 99 marketplace plugins
 - [Architecture](./architecture.md) - Design principles

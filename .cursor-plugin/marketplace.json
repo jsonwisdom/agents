@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 98 marketplace plugins, 205 local specialized agents, and 166 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 99 marketplace plugins, 206 local specialized agents, and 168 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -1045,6 +1045,18 @@
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
       },
+      "license": "MIT"
+    },
+    {
+      "name": "x-wisdom",
+      "source": "./plugins/x-wisdom",
+      "version": "1.0.0",
+      "description": "Wisdom-bound X (Twitter) reader and poster. Jay is the labor: reads are observed evidence, posts are publication and need Jason's exact-action approval. Jason is the brains.",
+      "author": {
+        "name": "Jason Wisdom",
+        "email": ""
+      },
+      "homepage": "https://github.com/jsonwisdom",
       "license": "MIT"
     }
   ]
