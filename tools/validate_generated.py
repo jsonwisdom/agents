@@ -626,8 +626,7 @@ def validate_qwen(report: Report) -> None:
                     harness="qwen",
                     path=skill_md,
                     message=(
-                        f"frontmatter name {fm.get('name')!r} != directory "
-                        f"{skill_md.parent.name!r}"
+                        f"frontmatter name {fm.get('name')!r} != directory {skill_md.parent.name!r}"
                     ),
                     remediation="Qwen discovers skills by directory; name must match.",
                 )
@@ -645,9 +644,7 @@ def validate_qwen(report: Report) -> None:
                 )
                 continue
             _check_nonempty_str_field(report, fm, "name", "qwen", agent_md, label="agent")
-            _check_nonempty_str_field(
-                report, fm, "description", "qwen", agent_md, label="agent"
-            )
+            _check_nonempty_str_field(report, fm, "description", "qwen", agent_md, label="agent")
 
     if commands_dir.is_dir():
         for command_md in commands_dir.rglob("*.md"):

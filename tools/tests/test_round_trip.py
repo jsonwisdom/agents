@@ -396,9 +396,7 @@ class TestNativeInstallManifests:
         path = WORKTREE / "qwen-extension.json"
         assert path.is_file(), "qwen-extension.json missing"
         data = json.loads(path.read_text())
-        assert data.get("contextFileName") == "AGENTS.md", (
-            "Qwen contextFileName must be AGENTS.md"
-        )
+        assert data.get("contextFileName") == "AGENTS.md", "Qwen contextFileName must be AGENTS.md"
         assert data.get("name"), "qwen-extension.json needs a name"
         assert data.get("version"), "qwen-extension.json needs a version"
         assert data.get("commands") == ".qwen/commands"

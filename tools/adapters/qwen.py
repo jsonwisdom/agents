@@ -110,9 +110,7 @@ class QwenAdapter(HarnessAdapter):
             metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
             name = str(data.get("name") or fallback[0])
             version = str(metadata.get("version") or data.get("version") or fallback[1])
-            description = str(
-                metadata.get("description") or data.get("description") or fallback[2]
-            )
+            description = str(metadata.get("description") or data.get("description") or fallback[2])
             return name, version, description
         return fallback
 
@@ -152,9 +150,7 @@ class QwenAdapter(HarnessAdapter):
         content = _qwen_frontmatter(fm) + "\n\n" + body
         result.written.append(self.write(rel, content))
 
-    def _emit_command(
-        self, plugin: PluginSource, cmd: CommandSource, result: EmitResult
-    ) -> None:
+    def _emit_command(self, plugin: PluginSource, cmd: CommandSource, result: EmitResult) -> None:
         """Emit `.qwen/commands/<plugin>/<command>.md` → `/<plugin>:<command>`."""
         rel = Path(".qwen") / "commands" / plugin.name / f"{cmd.name}.md"
         description = cmd.description or cmd.name.replace("-", " ").title()

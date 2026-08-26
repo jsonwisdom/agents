@@ -989,9 +989,7 @@ class TestQwenAdapter:
         assert body.rstrip().endswith("{{args}}") or "{{args}}" in body
         assert "$ARGUMENTS" not in body
 
-    def test_plugin_entry_command(
-        self, synthetic_plugin: PluginSource, output_root: Path
-    ):
+    def test_plugin_entry_command(self, synthetic_plugin: PluginSource, output_root: Path):
         QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
         entry = output_root / ".qwen" / "commands" / "demo.md"
         assert entry.is_file()
@@ -1001,9 +999,7 @@ class TestQwenAdapter:
         assert "/demo:say-hi" in content
         assert "{{args}}" in content
 
-    def test_does_not_emit_to_gemini_root(
-        self, synthetic_plugin: PluginSource, output_root: Path
-    ):
+    def test_does_not_emit_to_gemini_root(self, synthetic_plugin: PluginSource, output_root: Path):
         QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
         assert not (output_root / "skills").exists()
         assert not (output_root / "agents").exists()

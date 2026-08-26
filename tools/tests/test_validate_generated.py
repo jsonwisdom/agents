@@ -454,9 +454,7 @@ class TestQwenValidator:
         validate_qwen(report)
         assert any("name" in f.message and "directory" in f.message for f in report.errors())
 
-    def test_malformed_extension_json_errors(
-        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-    ):
+    def test_malformed_extension_json_errors(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
         _patch_worktree(monkeypatch, tmp_path)
         (tmp_path / "qwen-extension.json").write_text("{not json")
 
@@ -482,9 +480,7 @@ class TestQwenValidator:
 
         report = Report()
         validate_qwen(report)
-        assert any(
-            "QWEN.md" in str(f.path) and "cap: 150" in f.message for f in report.warnings()
-        )
+        assert any("QWEN.md" in str(f.path) and "cap: 150" in f.message for f in report.warnings())
 
     def test_every_supported_harness_has_validator(self):
         from tools.adapters.capabilities import supported_harnesses
