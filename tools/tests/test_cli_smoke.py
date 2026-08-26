@@ -118,6 +118,30 @@ class TestGeminiSmoke:
         assert "successfully validated" in proc.stdout.lower() or proc.returncode == 0
 
 
+# ── Qwen Code ────────────────────────────────────────────────────────────────
+
+
+@pytest.mark.skipif(not _has("qwen"), reason="qwen CLI not installed")
+class TestQwenSmoke:
+    def test_qwen_extension_validates(self):
+        """`qwen extensions validate <repo>` must return success when the CLI supports it.
+
+        Failure indicates qwen-extension.json schema drift or invalid markdown commands.
+        If the installed CLI has no `extensions validate` subcommand, skip rather than fail.
+        """
+        proc = _run(["qwen", "extensions", "validate", str(WORKTREE)])
+        combined = (proc.stdout + proc.stderr).lower()
+        if proc.returncode != 0 and any(
+            token in combined
+            for token in ("unknown", "not found", "unrecognized", "invalid command")
+        ):
+            pytest.skip("this qwen CLI has no `extensions validate` subcommand")
+        assert proc.returncode == 0, (
+            f"qwen extensions validate failed (rc={proc.returncode}):\n"
+            f"--- stdout ---\n{proc.stdout}\n--- stderr ---\n{proc.stderr}"
+        )
+
+
 # ── Codex CLI ────────────────────────────────────────────────────────────────
 
 

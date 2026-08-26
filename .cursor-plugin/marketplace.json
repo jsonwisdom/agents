@@ -22,6 +22,17 @@
       "license": "MIT"
     },
     {
+      "name": "agent-fork-coordinator",
+      "source": "./plugins/agent-fork-coordinator",
+      "version": "0.1.0",
+      "description": "Witness-only coordination for bounded background subagent research and debug tasks.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
+      },
+      "license": "MIT"
+    },
+    {
       "name": "agent-orchestration",
       "source": "./plugins/agent-orchestration",
       "version": "1.2.2",
@@ -40,6 +51,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "alms-public-record-verifier",
+      "source": "./plugins/alms-public-record-verifier",
+      "version": "0.1.0",
+      "description": "Witness-only public-record claim boundary checks with replayable source paths.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -106,6 +128,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "base-zora-receipt-agent",
+      "source": "./plugins/base-zora-receipt-agent",
+      "version": "0.1.0",
+      "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },
@@ -551,6 +584,17 @@
       "license": "MIT"
     },
     {
+      "name": "github-pr-witness",
+      "source": "./plugins/github-pr-witness",
+      "version": "0.1.0",
+      "description": "Witness-only GitHub PR evidence reports for reviewer-facing governance comments.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
+      },
+      "license": "MIT"
+    },
+    {
       "name": "hermes-tweet",
       "source": "./plugins/hermes-tweet",
       "version": "0.1.6",
@@ -754,6 +798,17 @@
       "author": {
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
+      },
+      "license": "MIT"
+    },
+    {
+      "name": "receipt-governance",
+      "source": "./plugins/receipt-governance",
+      "version": "0.1.0",
+      "description": "Receipt-first governance review for PRs, commits, workflows, and technical claims.",
+      "author": {
+        "name": "jsonwisdom",
+        "email": ""
       },
       "license": "MIT"
     },

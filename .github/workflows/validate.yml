@@ -204,12 +204,14 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
         with:
           name: multi-harness-output
-          path: |
+            path: |
             .codex/
             .cursor/
             .cursor-plugin/
             .opencode/
+            .qwen/
             opencode.json
+            qwen-extension.json
             commands/
             agents/
             skills/

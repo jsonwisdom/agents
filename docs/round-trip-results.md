@@ -14,6 +14,7 @@ load the generated artifacts and report what it found.
 | **Codex CLI** | 0.133.0 | ✅ pass (structural) | All 191 agent TOMLs parse via Python `tomllib`; AGENTS.md within budget (43 lines / 500 tokens) | Codex doctor surfaces no errors; deeper "did the model actually load the skill" requires interactive verification. |
 | **Cursor** | (editor-only) | n/a | n/a | No CLI; manual verification recipe below. |
 | **Copilot** | (structural) | ✅ pass | 191 agent profiles, 155 skills, 25 commands all validated | No CLI round-trip tool yet; structural validation via `make validate` passes. |
+| **Qwen Code** | (structural) | adapter + validator | Generate with `make generate HARNESS=qwen`; `qwen extensions validate .` when the CLI is on PATH | Isolated `.qwen/` trees; committed `qwen-extension.json`. |
 
 ## Issues surfaced and fixed during round-trip
 
@@ -122,13 +123,31 @@ Copilot currently lacks a CLI verification tool. Manual testing: open VS
 Code, open the Copilot Chat (Ctrl+Shift+I), and verify agents appear in the
 agent selector and skills auto-trigger from matching prompts.
 
+### Qwen Code
+
+```bash
+# 1. Generate artifacts (writes .qwen/ + qwen-extension.json)
+make generate HARNESS=qwen
+# 2. Structural validation
+make validate HARNESS=qwen
+# 3. Optional real-CLI check (skips if `qwen` is not on PATH)
+qwen extensions validate .
+# 4. Local install
+qwen extensions install .
+# or, during development:
+qwen extensions link .
+```
+
+`.qwen/` is gitignored; `qwen-extension.json` is committed. Do not emit into repo-root
+`skills/` / `agents/` / `commands/` — those belong to Gemini.
+
 ## Automated structural checks (no CLI needed)
 
 The `tools/validate_generated.py` script approximates round-trip without installing the
 harnesses:
 
 ```bash
-make validate                 # all five harnesses
+make validate                 # all generated harnesses
 make validate HARNESS=codex   # one only
 ```
 

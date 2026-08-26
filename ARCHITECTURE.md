@@ -4,9 +4,9 @@ Top-level architectural map for the claude-agents marketplace. Detail lives in [
 
 ## Invariants
 
-1. **Single source of truth.** All agent / skill / command authoring happens under `plugins/<name>/`. Generated harness-specific artifacts (`.codex/skills/`, `.codex/agents/`, `.opencode/`, `.copilot/`, `commands/`, `agents/`, `skills/` at extension root for Gemini) are produced by adapters and gitignored. The exception: small native-install registries (`.agents/plugins/marketplace.json`, `plugins/*/.codex-plugin/plugin.json`, `.cursor-plugin/`, `.cursor/rules/`, `gemini-extension.json`) are committed — they only point at the source `plugins/`, so the invariant holds. Never hand-edit generated files.
+1. **Single source of truth.** All agent / skill / command authoring happens under `plugins/<name>/`. Generated harness-specific artifacts (`.codex/skills/`, `.codex/agents/`, `.opencode/`, `.copilot/`, `.qwen/`, `commands/`, `agents/`, `skills/` at extension root for Gemini) are produced by adapters and gitignored. The exception: small native-install registries (`.agents/plugins/marketplace.json`, `plugins/*/.codex-plugin/plugin.json`, `.cursor-plugin/`, `.cursor/rules/`, `gemini-extension.json`, `qwen-extension.json`) are committed — they only point at the source `plugins/`, so the invariant holds. Never hand-edit generated files.
 
-2. **One canonical context file.** `AGENTS.md` at repo root is the only context file authored directly. Claude Code reads `CLAUDE.md`, a symlink to `AGENTS.md`. Gemini CLI reads it via `.gemini/settings.json` `context.fileName`. Codex / Cursor / OpenCode read `AGENTS.md` natively.
+2. **One canonical context file.** `AGENTS.md` at repo root is the only context file authored directly. Claude Code reads `CLAUDE.md`, a symlink to `AGENTS.md`. Gemini CLI reads it via `.gemini/settings.json` `context.fileName`. Qwen Code reads it via `qwen-extension.json` `contextFileName`. Codex / Cursor / OpenCode read `AGENTS.md` natively.
 
 3. **Adapters own per-harness mechanics; source content stays portable.** Authors write Claude-Code-quality markdown. Adapters under `tools/adapters/` handle every harness-specific transform (frontmatter rewriting, model-alias mapping, body-size caps, tool-name remapping). Source files never carry harness conditional logic.
 
@@ -23,9 +23,11 @@ claude-agents/
 ├── ARCHITECTURE.md                 # This file
 ├── README.md                       # User-facing GitHub landing page
 ├── GEMINI.md                       # Gemini-specific setup (auto-loaded by Gemini CLI)
+├── QWEN.md                         # Qwen-specific setup (not injected; see qwen-extension.json)
 ├── CONTRIBUTING.md                 # Contributor entry point
 ├── .claude-plugin/marketplace.json # Plugin registry (source of truth)
 ├── .gemini/settings.json           # Gemini CLI → AGENTS.md redirect
+├── qwen-extension.json             # Qwen Code extension manifest (contextFileName: AGENTS.md)
 ├── plugins/                        # SOURCE OF TRUTH (87 local plugins; 3 externals in marketplace)
 │   └── <name>/
 │       ├── .claude-plugin/plugin.json
@@ -36,7 +38,7 @@ claude-agents/
 │   ├── adapters/                   # Per-harness adapter framework
 │   │   ├── base.py                 # Parser, HarnessAdapter ABC, helpers
 │   │   ├── capabilities.py         # Capability matrix; consumed by every adapter
-│   │   ├── codex.py / cursor.py / opencode.py / gemini.py / copilot.py
+│   │   ├── codex.py / cursor.py / opencode.py / gemini.py / copilot.py / qwen.py
 │   │   └── cursor_rules/           # Hand-curated .mdc rules
 │   ├── generate.py                 # Unified CLI: `make generate HARNESS=<x>`
 │   ├── validate_generated.py       # Structural validation
@@ -63,6 +65,7 @@ Each adapter consumes the canonical `plugins/` source and emits harness-native a
 | `opencode.py` | `.opencode/agents/`, `.opencode/commands/`, `.opencode/skills/` | Permission block from `tools:` allowlist (locked agents preserve intent); strict lowercase tool names; OpenCode-safe skill names |
 | `copilot.py` | `.copilot/agents/`, `.copilot/skills/`, `.copilot/commands/` | Markdown agent profiles + SKILL.md skills + commands-as-skills; model maps to native Claude models |
 | `gemini.py` | `skills/`, `agents/`, `commands/*.toml` at extension root | Native skills + April-2026 subagents; `@{path}` injection for large command bodies |
+| `qwen.py` | committed `qwen-extension.json`; gitignored `.qwen/{skills,agents,commands}/` | Isolated from Gemini root trees; Markdown commands with `{{args}}`; models map to `inherit` / `fast` |
 
 Detail in [`docs/harnesses.md`](docs/harnesses.md) (capability matrix per harness) and [`docs/architecture.md`](docs/architecture.md) (full design rationale).
 
@@ -84,7 +87,7 @@ Each plugin is a directory under `plugins/`. Three component types, all auto-dis
 - **Skills** (`skills/<n>/SKILL.md`) — modular knowledge with progressive disclosure. Frontmatter: `name`, `description` (must include a recognized trigger phrase like "Use when …"). Supporting material in `references/`, templates in `assets/`.
 - **Commands** (`commands/<n>.md`) — slash commands. Frontmatter: `description`, `argument-hint`.
 
-Full conventions in [`docs/authoring.md`](docs/authoring.md). Authoring for portability across all five harnesses is the main concern; the adapter framework handles per-harness mechanics.
+Full conventions in [`docs/authoring.md`](docs/authoring.md). Authoring for portability across all generated harnesses is the main concern; the adapter framework handles per-harness mechanics.
 
 ## Model tiers
 

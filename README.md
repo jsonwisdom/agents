@@ -2,12 +2,12 @@
 
 > Production-ready agentic workflow building blocks: **92 plugins**, **199 agents**,
 > **162 skills**, **106 commands** — built for Claude Code and consumed natively by
-> OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and GitHub Copilot from a single Markdown source.
+> OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, GitHub Copilot, and Qwen Code from a single Markdown source.
 
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-native-blueviolet)](#claude-code) [![Codex CLI](https://img.shields.io/badge/Codex%20CLI-supported-black)](docs/harnesses.md) [![Cursor](https://img.shields.io/badge/Cursor-supported-purple)](docs/harnesses.md) [![OpenCode](https://img.shields.io/badge/OpenCode-supported-green)](docs/harnesses.md) [![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-supported-blue)](GEMINI.md) [![Copilot](https://img.shields.io/badge/Copilot-supported-lightgrey)](docs/harnesses.md)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-native-blueviolet)](#claude-code) [![Codex CLI](https://img.shields.io/badge/Codex%20CLI-supported-black)](docs/harnesses.md) [![Cursor](https://img.shields.io/badge/Cursor-supported-purple)](docs/harnesses.md) [![OpenCode](https://img.shields.io/badge/OpenCode-supported-green)](docs/harnesses.md) [![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-supported-blue)](GEMINI.md) [![Copilot](https://img.shields.io/badge/Copilot-supported-lightgrey)](docs/harnesses.md) [![Qwen Code](https://img.shields.io/badge/Qwen%20Code-supported-red)](QWEN.md)
 
 > [!NOTE]
-> One source-of-truth (`plugins/`), five harnesses. Each harness gets idiomatic,
+> One source-of-truth (`plugins/`), six generated harnesses plus Claude Code. Each harness gets idiomatic,
 > harness-native artifacts — not lowest-common-denominator translations.
 > See [docs/harnesses.md](docs/harnesses.md) for the capability matrix.
 
@@ -24,7 +24,7 @@ Pick your harness:
 
 [→ Full Claude Code setup, troubleshooting, and plugin catalog](docs/usage.md)
 
-### Codex CLI · Cursor · OpenCode · Gemini CLI · Copilot
+### Codex CLI · Cursor · OpenCode · Gemini CLI · Copilot · Qwen Code
 
 Codex and Cursor install natively from the committed registries (which point at the source `plugins/`):
 
@@ -33,15 +33,16 @@ npx codex-marketplace add wshobson/agents        # Codex; then install individua
 # Cursor: add the marketplace, then `/plugin install <name>` (reads .cursor-plugin/ + source)
 ```
 
-Gemini and OpenCode install via clone + generate (the transformed trees are gitignored):
+Gemini, OpenCode, and Qwen Code install via clone + generate (the transformed trees are gitignored):
 
 ```bash
 gh repo clone wshobson/agents ~/agents && cd ~/agents
 make generate HARNESS=gemini && gemini extensions install .   # Gemini
+make generate HARNESS=qwen && qwen extensions install .       # Qwen Code
 make install-opencode                                          # OpenCode (runs generate + symlinks)
 ```
 
-Setup details and per-harness gotchas: [docs/harnesses.md](docs/harnesses.md). Gemini-specific setup: [GEMINI.md](GEMINI.md) (also auto-loaded by Gemini CLI).
+Setup details and per-harness gotchas: [docs/harnesses.md](docs/harnesses.md). Gemini-specific setup: [GEMINI.md](GEMINI.md). Qwen-specific setup: [QWEN.md](QWEN.md).
 
 ## What's inside
 
@@ -83,7 +84,7 @@ Tiered model strategy:
 
 ## Multi-harness support
 
-This marketplace ships to five agentic harnesses from one Markdown source. Each adapter
+This marketplace ships to six generated harnesses plus Claude Code from one Markdown source. Each adapter
 emits harness-native artifacts (not lowest-common-denominator translations):
 
 | Harness | Generates | Notes |
@@ -94,14 +95,15 @@ emits harness-native artifacts (not lowest-common-denominator translations):
 | **OpenCode** | `.opencode/agents/`, `.opencode/commands/`, `.opencode/skills/` | `permission:` block from `tools:` allowlist; OpenCode-safe skill names |
 | **Gemini CLI** | `skills/`, `agents/`, `commands/` (TOML) | Native skills + subagents (April 2026 spec) |
 | **Copilot** | `.copilot/agents/`, `.copilot/skills/`, `.copilot/commands/` | Markdown agent profiles + SKILL.md skills + commands-as-skills; model maps to native Claude models |
+| **Qwen Code** | committed `qwen-extension.json`; gitignored `.qwen/{skills,agents,commands}/` | Isolated from Gemini root trees; Markdown commands with `{{args}}`; models map to `inherit` / `fast` |
 
 ```bash
-make generate-all                        # all five
+make generate-all                        # all generated harnesses
 make validate                            # structural checks
 make garden                              # drift / dead-link / cap detection
 ```
 
-Codex and Cursor install from source via committed registries; Gemini and OpenCode install via clone + `make`.
+Codex and Cursor install from source via committed registries; Gemini, OpenCode, and Qwen Code install via clone + `make`.
 
 [→ Full capability matrix and per-harness deep-dives](docs/harnesses.md)
 

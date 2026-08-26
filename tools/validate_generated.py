@@ -6,7 +6,7 @@ parse and validate against documented schemas. Surface issues with file paths an
 remediation hints (OpenAI harness-engineering: lint errors carry their fix).
 
 Usage:
-    python tools/validate_generated.py                # validate all four
+    python tools/validate_generated.py                # validate all generated harnesses
     python tools/validate_generated.py --harness codex
     python tools/validate_generated.py --strict       # exit nonzero if any warning
 """
@@ -602,6 +602,160 @@ def validate_gemini(report: Report) -> None:
             )
 
 
+# ── Qwen Code validators ─────────────────────────────────────────────────────
+
+
+def validate_qwen(report: Report) -> None:
+    """Validate generated Qwen Code artifacts under WORKTREE/.qwen plus the
+    committed qwen-extension.json / QWEN.md files.
+
+    Missing `.qwen/` is not an error (trees are gitignored and regenerated on
+    demand). The committed extension manifest is always checked when present.
+    """
+    skills_dir = WORKTREE / ".qwen" / "skills"
+    agents_dir = WORKTREE / ".qwen" / "agents"
+    commands_dir = WORKTREE / ".qwen" / "commands"
+
+    if skills_dir.is_dir():
+        for skill_md in skills_dir.glob("*/SKILL.md"):
+            content = skill_md.read_text(encoding="utf-8")
+            fm, _ = parse_frontmatter(content)
+            if fm.get("name") != skill_md.parent.name:
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=skill_md,
+                    message=(
+                        f"frontmatter name {fm.get('name')!r} != directory "
+                        f"{skill_md.parent.name!r}"
+                    ),
+                    remediation="Qwen discovers skills by directory; name must match.",
+                )
+
+    if agents_dir.is_dir():
+        for agent_md in agents_dir.glob("*.md"):
+            fm, _ = parse_frontmatter(agent_md.read_text(encoding="utf-8"))
+            if not fm:
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=agent_md,
+                    message="missing or invalid frontmatter",
+                    remediation="Regenerate via `make generate HARNESS=qwen`.",
+                )
+                continue
+            _check_nonempty_str_field(report, fm, "name", "qwen", agent_md, label="agent")
+            _check_nonempty_str_field(
+                report, fm, "description", "qwen", agent_md, label="agent"
+            )
+
+    if commands_dir.is_dir():
+        for command_md in commands_dir.rglob("*.md"):
+            content = command_md.read_text(encoding="utf-8")
+            fm, body = parse_frontmatter(content)
+            if not fm:
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=command_md,
+                    message="missing or invalid frontmatter",
+                    remediation="Regenerate via `make generate HARNESS=qwen`.",
+                )
+                continue
+            description = fm.get("description")
+            if not isinstance(description, str) or not description.strip():
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=command_md,
+                    message="missing required `description` field in frontmatter",
+                    remediation="Qwen command markdown files need a non-empty description.",
+                )
+            if "{{args}}" not in body and "{{args}}" not in content:
+                report.add(
+                    severity="warning",
+                    harness="qwen",
+                    path=command_md,
+                    message="prompt does not include {{args}} placeholder",
+                    remediation="Append {{args}} so user input is appended to the prompt.",
+                )
+
+    ext = WORKTREE / "qwen-extension.json"
+    if ext.is_file():
+        try:
+            data = json.loads(ext.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            report.add(
+                severity="error",
+                harness="qwen",
+                path=ext,
+                message=f"JSON parse error: {e}",
+                remediation="Regenerate via `make generate HARNESS=qwen`.",
+            )
+        else:
+            if not data.get("name"):
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=ext,
+                    message="missing required `name` field",
+                    remediation="qwen-extension.json needs a name.",
+                )
+            if not data.get("version"):
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=ext,
+                    message="missing required `version` field",
+                    remediation="qwen-extension.json needs a version.",
+                )
+            if data.get("contextFileName") != "AGENTS.md":
+                report.add(
+                    severity="error",
+                    harness="qwen",
+                    path=ext,
+                    message=(
+                        f"contextFileName {data.get('contextFileName')!r} must be 'AGENTS.md'"
+                    ),
+                    remediation=(
+                        "Keep contextFileName at AGENTS.md so QWEN.md is not injected every prompt."
+                    ),
+                )
+            for field, expected in (
+                ("commands", ".qwen/commands"),
+                ("skills", ".qwen/skills"),
+                ("agents", ".qwen/agents"),
+            ):
+                if data.get(field) != expected:
+                    report.add(
+                        severity="error",
+                        harness="qwen",
+                        path=ext,
+                        message=f"`{field}` {data.get(field)!r} must be {expected!r}",
+                        remediation=f"Set `{field}` to `{expected}` in qwen-extension.json.",
+                    )
+    elif (WORKTREE / ".qwen").is_dir():
+        report.add(
+            severity="error",
+            harness="qwen",
+            path=ext,
+            message="qwen-extension.json missing",
+            remediation="Run `make generate HARNESS=qwen` to emit the committed manifest.",
+        )
+
+    qwen_md = WORKTREE / "QWEN.md"
+    if qwen_md.is_file():
+        line_count = len(qwen_md.read_text(encoding="utf-8").splitlines())
+        if line_count > 150:
+            report.add(
+                severity="warning",
+                harness="qwen",
+                path=qwen_md,
+                message=f"QWEN.md is {line_count} lines (cap: 150 — table of contents pattern)",
+                remediation="Move detail to docs/.",
+            )
+
+
 # ── Driver ───────────────────────────────────────────────────────────────────
 
 
@@ -694,6 +848,7 @@ _VALIDATORS = {
     "cursor": validate_cursor,
     "gemini": validate_gemini,
     "opencode": validate_opencode,
+    "qwen": validate_qwen,
 }
 
 

@@ -1,0 +1,11 @@
+{
+  "name": "base-zora-receipt-agent",
+  "displayName": "Base Zora Receipt Agent",
+  "version": "0.1.0",
+  "description": "On-chain receipt boundary checks for Base, Zora, ENS, EAS, and public blockchain claims.",
+  "author": {
+    "name": "jsonwisdom",
+    "email": ""
+  },
+  "license": "MIT"
+}

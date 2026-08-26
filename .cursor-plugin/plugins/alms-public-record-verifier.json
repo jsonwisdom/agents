@@ -1,0 +1,11 @@
+{
+  "name": "alms-public-record-verifier",
+  "displayName": "Alms Public Record Verifier",
+  "version": "0.1.0",
+  "description": "Witness-only public-record claim boundary checks with replayable source paths.",
+  "author": {
+    "name": "jsonwisdom",
+    "email": ""
+  },
+  "license": "MIT"
+}

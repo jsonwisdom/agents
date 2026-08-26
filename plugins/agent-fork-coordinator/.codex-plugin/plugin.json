@@ -1,0 +1,23 @@
+{
+  "name": "agent-fork-coordinator",
+  "version": "0.1.0",
+  "description": "Witness-only coordination for bounded background subagent research and debug tasks.",
+  "skills": "./skills/",
+  "author": "jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "subagents",
+    "fork",
+    "coordination",
+    "mcp",
+    "research",
+    "debugging",
+    "governance",
+    "witness-only"
+  ],
+  "interface": {
+    "displayName": "Agent Fork Coordinator",
+    "shortDescription": "Witness-only coordination for bounded background subagent research and debug tasks.",
+    "category": "Coding"
+  }
+}
