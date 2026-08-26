@@ -1,0 +1,22 @@
+{
+  "name": "wisdom-team",
+  "version": "1.0.0",
+  "description": "Reverse-replay locators into a wisdom team roster and name the seats in the same turn. Jason is the brains; Jay is the labor. Smallest covering set; no extra seats.",
+  "author": {
+    "name": "Jason Wisdom",
+    "url": "https://github.com/jsonwisdom"
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "wisdom",
+    "team",
+    "roster",
+    "reverse-replay",
+    "locators",
+    "governance",
+    "brains",
+    "labor",
+    "agent-skills"
+  ]
+}

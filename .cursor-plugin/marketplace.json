@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 99 marketplace plugins, 206 local specialized agents, and 168 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 170 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -1045,6 +1045,18 @@
         "name": "Seth Hobson",
         "email": "seth@major7apps.com"
       },
+      "license": "MIT"
+    },
+    {
+      "name": "wisdom-team",
+      "source": "./plugins/wisdom-team",
+      "version": "1.0.0",
+      "description": "Reverse-replay locators into a wisdom team roster and name the seats in the same turn. Jason is the brains; Jay is the labor. Smallest covering set; no extra seats.",
+      "author": {
+        "name": "Jason Wisdom",
+        "email": ""
+      },
+      "homepage": "https://github.com/jsonwisdom",
       "license": "MIT"
     },
     {

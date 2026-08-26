@@ -1130,6 +1130,18 @@
       "category": "Coding"
     },
     {
+      "name": "wisdom-team",
+      "source": {
+        "source": "local",
+        "path": "./plugins/wisdom-team"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
       "name": "x-wisdom",
       "source": {
         "source": "local",

@@ -1,6 +1,6 @@
 # Agent Reference
 
-Complete reference for all **206 local specialized AI agents** organized by category with model assignments.
+Complete reference for all **207 local specialized AI agents** organized by category with model assignments.
 
 ## Agent Categories
 
@@ -228,6 +228,7 @@ Complete reference for all **206 local specialized AI agents** organized by cate
 | [alms-public-record-verifier](../plugins/alms-public-record-verifier/agents/alms-public-record-verifier.md) | inherit | Public-record claim boundary checks with replayable source paths |
 | [base-zora-receipt-agent](../plugins/base-zora-receipt-agent/agents/base-zora-receipt-agent.md) | inherit | On-chain receipt checks for Base, Zora, ENS, EAS, and public chain claims |
 | [x-wisdom-assistant](../plugins/x-wisdom/agents/x-wisdom-assistant.md) | inherit | Wisdom-bound X reads and approval-gated posts |
+| [wisdom-team-assistant](../plugins/wisdom-team/agents/wisdom-team-assistant.md) | inherit | Reverse-replay locators into a named wisdom roster in the same turn |
 
 ## Model Configuration
 
@@ -241,7 +242,7 @@ Agents are assigned to specific Claude models based on task complexity and compu
 | Opus    | 54          | Critical architecture, security, code review, production coding |
 | Sonnet  | 68          | Complex tasks, support with intelligence                        |
 | Haiku   | 25          | Fast operational tasks                                          |
-| Inherit | 59          | Complex tasks where the user chooses the model at runtime       |
+| Inherit | 60          | Complex tasks where the user chooses the model at runtime       |
 
 ### Model Selection Criteria
 

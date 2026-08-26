@@ -1,6 +1,6 @@
 # Complete Plugin Reference
 
-Browse all **99 marketplace plugins** organized by category: 95 local plugins plus 4 externally hosted `git-subdir` entries (`pensyve`, `qa-orchestra`, `storymap-skill`, `ciagent`).
+Browse all **100 marketplace plugins** organized by category: 96 local plugins plus 4 externally hosted `git-subdir` entries (`pensyve`, `qa-orchestra`, `storymap-skill`, `ciagent`).
 
 ## Quick Start - Essential Plugins
 
@@ -235,7 +235,7 @@ Next.js, React + Vite, and Node.js project setup with pnpm and TypeScript best p
 | **reverse-engineering**      | Binary analysis, malware triage, firmware security (authorized) | `/plugin install reverse-engineering`      |
 | **block-no-verify**          | PreToolUse hook blocking `--no-verify` and hook-bypass flags    | `/plugin install block-no-verify`          |
 
-### 🛡️ Governance (10 plugins)
+### 🛡️ Governance (11 plugins)
 
 | Plugin                         | Description                                                                                                             | Install                                    |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -244,6 +244,7 @@ Next.js, React + Vite, and Node.js project setup with pnpm and TypeScript best p
 | **review-agent-governance**    | Human approval governance before AI agents post reviews, comments, merges, or CI writes                                 | `/plugin install review-agent-governance` |
 | **computer-wisdom-assistant**  | Judgment assistant with Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets | `/plugin install computer-wisdom-assistant` |
 | **x-wisdom**                   | Wisdom-bound X reader and poster: observed reads, approval-gated posts (Jason brains, Jay labor)                        | `/plugin install x-wisdom` |
+| **wisdom-team**                | Reverse-replay locators into a named wisdom roster in the same turn (Jason brains, Jay labor)                           | `/plugin install wisdom-team` |
 | **agent-fork-coordinator**     | Witness-only coordination for bounded background subagent research and debug tasks                                      | `/plugin install agent-fork-coordinator` |
 | **receipt-governance**         | Receipt-first governance review for PRs, commits, workflows, and technical claims                                       | `/plugin install receipt-governance` |
 | **github-pr-witness**          | Witness-only GitHub PR evidence reports for reviewer-facing governance comments                                         | `/plugin install github-pr-witness` |
@@ -370,7 +371,7 @@ plugins/python-development/
 /plugin marketplace add wshobson/agents
 ```
 
-This makes all 99 marketplace plugins available for installation, but **does not load any agents or tools** into your context.
+This makes all 100 marketplace plugins available for installation, but **does not load any agents or tools** into your context.
 
 ### Step 2: Install Specific Plugins
 
@@ -413,7 +414,7 @@ Each installed plugin loads **only its specific agents and commands** into Claud
 
 ## See Also
 
-- [Agent Skills](./agent-skills.md) - 168 specialized skills across plugins
+- [Agent Skills](./agent-skills.md) - 170 specialized skills across plugins
 - [Agent Reference](./agents.md) - Complete agent catalog
 - [Usage Guide](./usage.md) - Commands and workflows
 - [Architecture](./architecture.md) - Design principles

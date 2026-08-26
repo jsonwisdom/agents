@@ -36,8 +36,8 @@ This marketplace follows industry best practices with a focus on granularity, co
 
 ### Plugin Distribution
 
-- **99 marketplace plugins** (95 local + 4 external via git-subdir) optimized for specific use cases
-- **26 clear categories** with 1-10 plugins each for easy discovery
+- **100 marketplace plugins** (96 local + 4 external via git-subdir) optimized for specific use cases
+- **26 clear categories** with 1-11 plugins each for easy discovery
 - Organized by domain:
   - **Development**: 6 plugins (debugging, backend, frontend, UI, multi-platform, essentials)
   - **Security**: 6 plugins (scanning, compliance, API, frontend/mobile, reverse engineering, hook policy)
@@ -48,7 +48,7 @@ This marketplace follows industry best practices with a focus on granularity, co
 
 ### Component Breakdown
 
-**206 Local Specialized Agents**
+**207 Local Specialized Agents**
 
 - Domain experts with deep knowledge
 - Organized across architecture, languages, infrastructure, quality, data/AI, documentation, business, and SEO
@@ -60,7 +60,7 @@ This marketplace follows industry best practices with a focus on granularity, co
 - Complex operations like full-stack development, security hardening, ML pipelines, incident response
 - Pre-configured agent workflows
 
-**115 Local Commands**
+**117 Local Commands**
 
 - Optimized utilities including:
   - Project scaffolding (Python, TypeScript, Rust)
@@ -69,11 +69,11 @@ This marketplace follows industry best practices with a focus on granularity, co
   - Component scaffolding (React, React Native)
   - Infrastructure setup (Terraform, Kubernetes)
 
-**168 Local Agent Skills**
+**170 Local Agent Skills**
 
 - Modular knowledge packages
 - Progressive disclosure architecture
-- Domain-specific expertise across 48 plugins
+- Domain-specific expertise across 49 plugins
 - Spec-compliant (Anthropic Agent Skills Specification)
 
 ## Repository Structure
@@ -81,7 +81,7 @@ This marketplace follows industry best practices with a focus on granularity, co
 ```
 claude-agents/
 ├── .claude-plugin/
-│   └── marketplace.json          # Marketplace catalog (99 plugins)
+│   └── marketplace.json          # Marketplace catalog (100 plugins)
 ├── plugins/                       # Isolated plugin directories
 │   ├── python-development/
 │   │   ├── agents/               # Python language agents
@@ -194,7 +194,7 @@ description: What the skill does. Use when [trigger]. # Required: < 1024 chars
 - **Composability**: Mix and match skills across workflows
 - **Maintainability**: Isolated updates don't affect other skills
 
-See [Agent Skills](./agent-skills.md) for complete details on the 168 skills.
+See [Agent Skills](./agent-skills.md) for complete details on the 170 skills.
 
 ## Model Configuration Strategy
 
@@ -263,7 +263,7 @@ code-reviewer (Sonnet) validates architecture
 ### Component Coverage
 
 - **100% agent coverage** - all plugins include at least one agent
-- **100% component availability** - all 206 local agents accessible across plugins
+- **100% component availability** - all 207 local agents accessible across plugins
 - **Efficient distribution** - 5.5 components per plugin average
 
 ### Discoverability
@@ -393,5 +393,5 @@ Feature Development Workflow:
 
 - [Agent Skills](./agent-skills.md) - Modular knowledge packages
 - [Agent Reference](./agents.md) - Complete agent catalog
-- [Plugin Reference](./plugins.md) - All 99 marketplace plugins
+- [Plugin Reference](./plugins.md) - All 100 marketplace plugins
 - [Usage Guide](./usage.md) - Commands and workflows
