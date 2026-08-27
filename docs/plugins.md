@@ -242,7 +242,7 @@ Next.js, React + Vite, and Node.js project setup with pnpm and TypeScript best p
 | **protect-mcp**                | Cedar policy enforcement + Ed25519 signed receipts for every tool call; offline-verifiable audit trail via hash chaining | `/plugin install protect-mcp`             |
 | **signed-audit-trails**        | Cookbook-style signed audit trail patterns for Claude Code tool calls                                                   | `/plugin install signed-audit-trails`     |
 | **review-agent-governance**    | Human approval governance before AI agents post reviews, comments, merges, or CI writes                                 | `/plugin install review-agent-governance` |
-| **computer-wisdom-assistant**  | Judgment assistant with Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets | `/plugin install computer-wisdom-assistant` |
+| **computer-wisdom-assistant**  | Judgment assistant with Agent Skills for evidence-first review, bounded authority, replayable reasoning, complexity budgets, and jurisdiction splits | `/plugin install computer-wisdom-assistant` |
 | **x-wisdom**                   | Wisdom-bound X reader and poster: observed reads, approval-gated posts (Jason brains, Jay labor)                        | `/plugin install x-wisdom` |
 | **wisdom-team**                | Reverse-replay locators into a named wisdom roster in the same turn (Jason brains, Jay labor)                           | `/plugin install wisdom-team` |
 | **agent-fork-coordinator**     | Witness-only coordination for bounded background subagent research and debug tasks                                      | `/plugin install agent-fork-coordinator` |
@@ -414,7 +414,7 @@ Each installed plugin loads **only its specific agents and commands** into Claud
 
 ## See Also
 
-- [Agent Skills](./agent-skills.md) - 170 specialized skills across plugins
+- [Agent Skills](./agent-skills.md) - 171 specialized skills across plugins
 - [Agent Reference](./agents.md) - Complete agent catalog
 - [Usage Guide](./usage.md) - Commands and workflows
 - [Architecture](./architecture.md) - Design principles

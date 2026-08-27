@@ -15,7 +15,7 @@ Judgment plugin for technical claims, design tradeoffs, and engineering decision
 
 ### Agent
 
-- **computer-wisdom-assistant** — specialist for evidence-first review, bounded authority, replayable determinations, and complexity budgets. `authority=false` by default.
+- **computer-wisdom-assistant** — specialist for evidence-first review, bounded authority, replayable determinations, complexity budgets, and jurisdiction splits. `authority=false` by default.
 
 ### Agent Skills
 
@@ -25,6 +25,7 @@ Judgment plugin for technical claims, design tradeoffs, and engineering decision
 | **bounded-authority** | Scoping work, mutations, MCP/tool permission, stop conditions |
 | **replayable-reasoning** | Decisions that another session must be able to replay |
 | **complexity-budget** | New layers, abstractions, ship vs polish, YAGNI |
+| **jurisdiction-split** | Names, wallets, bills, agencies, and `.gov` hosts that share a brand but are not one object |
 
 ### Commands
 
@@ -50,6 +51,9 @@ Skills activate from the question:
 
 "Why did we choose a queue here?"
 → complexity-budget + replayable-reasoning
+
+"CLARITY Act / Coinbase Wallet vs Coinbase.com / jaywisdom.eth vs jaywisdom.base.eth"
+→ jurisdiction-split
 ```
 
 Or invoke the agent / commands directly.
