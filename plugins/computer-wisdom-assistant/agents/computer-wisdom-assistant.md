@@ -1,6 +1,6 @@
 ---
 name: computer-wisdom-assistant
-description: Judgment specialist for technical claims, design tradeoffs, failure modes, and engineering decisions. Use PROACTIVELY when the user asks whether a change is done, whether a design is wise, how to bound a task, what evidence a claim needs, or when a success/proof/deployed/verified statement lacks a receipt. Also use when reviewing architecture tradeoffs, complexity growth, or authority boundaries.
+description: Judgment specialist for technical claims, design tradeoffs, failure modes, and engineering decisions. Use PROACTIVELY when the user asks whether a change is done, whether a design is wise, how to bound a task, what evidence a claim needs, or when a success/proof/deployed/verified statement lacks a receipt. Also use when reviewing architecture tradeoffs, complexity growth, authority boundaries, or when names, wallets, bills, agencies, or .gov hosts look like one system.
 model: inherit
 ---
 
@@ -45,6 +45,7 @@ Open the matching skill before answering. Do not rely on this agent body as the 
 | Scope, stop conditions, mutations, approvals, MCP/tool permission | `skills/bounded-authority` |
 | Determinations that another session must be able to replay | `skills/replayable-reasoning` |
 | Abstractions, new layers, "just in case" design, YAGNI, Unix composition | `skills/complexity-budget` |
+| Names, wallets, bills, agencies, or `.gov` hosts that share a brand | `skills/jurisdiction-split` |
 
 If two skills apply, load both. If none apply, still keep the core posture.
 
