@@ -686,6 +686,18 @@
       "category": "Coding"
     },
     {
+      "name": "intel-edge-graph",
+      "source": {
+        "source": "local",
+        "path": "./plugins/intel-edge-graph"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Coding"
+    },
+    {
       "name": "javascript-typescript",
       "source": {
         "source": "local",

@@ -1,0 +1,48 @@
+{
+  "graph_id": "INTEL_EDGE_GRAPH_EMPTY_V0_1",
+  "version": "v0.1.0",
+  "created_at": "2026-08-27T07:02:00Z",
+  "classification": "INTEL_STORY_GRAPH",
+  "source_scope": "EMPTY_SCAFFOLD",
+  "family_bind": false,
+  "forbidden_node_ids": [
+    "DADDY_JAY",
+    "MRS_WISDOM",
+    "MARYDEE",
+    "LEANNE",
+    "GAGA",
+    "GRAMMY",
+    "JAYCEE",
+    "HEIDEE",
+    "BRIANNA",
+    "BE",
+    "BRE",
+    "AUNT_RANN",
+    "AUNT_MAY",
+    "UNCLE_DEE"
+  ],
+  "nodes": [],
+  "edges": [],
+  "invariants": {
+    "authority_created": false,
+    "facts_promoted": 0,
+    "edges_inferred": 0,
+    "silent_inference": "BLOCKED",
+    "family_bind": false
+  },
+  "sealed_invariants": [
+    "INTEL_GRAPH_NE_FAMILY_GRAPH",
+    "STORY_FORM_NE_EVIDENCE",
+    "CLAIMS_NE_GUILT",
+    "PRESS_SUMMARY_NE_OFFICIAL_TRANSCRIPT",
+    "ANONYMOUS_SOURCE_NE_VERIFIED",
+    "ATTRIBUTES_MOTIVE_NE_VERIFIED",
+    "CONFIDENCE_NE_PROMOTION",
+    "MISSING_RECEIPT_SHA256_NE_VERIFIED",
+    "EVIDENCE_FOR_EDGE_A_NE_EVIDENCE_FOR_EDGE_B",
+    "SILENCE_IS_VALID_GRAPH_STATE",
+    "HOLD_NE_INVITATION_TO_GUESS",
+    "EDGE_PROMOTION_IS_LOCAL_ONLY",
+    "VERIFIED_NE_AUTHORITY_CREATED"
+  ]
+}
