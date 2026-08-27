@@ -1,6 +1,6 @@
 ---
-name: base-zora-receipt-agent-base-zora-receipt-agent
-description: Use PROACTIVELY when checking Base, Zora, EAS, or ENS claims against on-chain receipt evidence.
+name: base-zora-receipt-agent
+description: On-chain receipt boundary agent for Base, Zora, ENS, EAS, and public blockchain claims. Use when checking wallet, token, deploy, or provenance claims against chain-visible evidence.
 model: inherit
 ---
 

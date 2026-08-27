@@ -1,0 +1,23 @@
+{
+  "name": "x-wisdom",
+  "version": "1.0.0",
+  "description": "Wisdom-bound X (Twitter) reader and poster. Jay is the labor: reads are observed evidence, posts are publication and need Jason's exact-action approval. Jason is the brains.",
+  "author": {
+    "name": "Jason Wisdom",
+    "url": "https://github.com/jsonwisdom"
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT",
+  "keywords": [
+    "x",
+    "twitter",
+    "posts",
+    "reads",
+    "wisdom",
+    "governance",
+    "approval",
+    "labor",
+    "brains",
+    "agent-skills"
+  ]
+}

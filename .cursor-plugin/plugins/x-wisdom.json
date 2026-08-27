@@ -1,0 +1,12 @@
+{
+  "name": "x-wisdom",
+  "displayName": "X Wisdom",
+  "version": "1.0.0",
+  "description": "Wisdom-bound X (Twitter) reader and poster. Jay is the labor: reads are observed evidence, posts are publication and need Jason's exact-action approval. Jason is the brains.",
+  "author": {
+    "name": "Jason Wisdom",
+    "email": ""
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT"
+}

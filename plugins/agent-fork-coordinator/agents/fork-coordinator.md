@@ -1,6 +1,6 @@
 ---
-name: agent-fork-coordinator-fork-coordinator
-description: Use PROACTIVELY when coordinating bounded background subagent research or debug tasks without mutating state.
+name: fork-coordinator
+description: Witness-only coordinator for bounded background subagent research and debug tasks. Use when forking research, debugging, PR witness work, or evidence gathering without mutating the main thread.
 model: inherit
 ---
 

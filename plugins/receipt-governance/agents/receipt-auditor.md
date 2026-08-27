@@ -1,6 +1,6 @@
 ---
-name: receipt-governance-receipt-auditor
-description: Use PROACTIVELY when reviewing PRs, commits, or workflows for receipt-backed claims.
+name: receipt-auditor
+description: Receipt-first governance auditor for PRs, commits, workflows, and technical claims. Use when reviewing whether a change is backed by observable evidence, CI, hashes, or receipts.
 model: inherit
 ---
 

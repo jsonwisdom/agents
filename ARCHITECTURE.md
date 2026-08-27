@@ -28,7 +28,7 @@ claude-agents/
 ├── .claude-plugin/marketplace.json # Plugin registry (source of truth)
 ├── .gemini/settings.json           # Gemini CLI → AGENTS.md redirect
 ├── qwen-extension.json             # Qwen Code extension manifest (contextFileName: AGENTS.md)
-├── plugins/                        # SOURCE OF TRUTH (87 local plugins; 3 externals in marketplace)
+├── plugins/                        # SOURCE OF TRUTH (96 local plugins; 4 externals in marketplace)
 │   └── <name>/
 │       ├── .claude-plugin/plugin.json
 │       ├── agents/*.md

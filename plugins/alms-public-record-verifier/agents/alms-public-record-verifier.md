@@ -1,6 +1,6 @@
 ---
-name: alms-public-record-verifier-alms-public-record-verifier
-description: Use PROACTIVELY when checking public-record claims against a replayable source-visible path.
+name: alms-public-record-verifier
+description: Witness-only public-record claim boundary agent. Use when a claim depends on public records and needs a replayable, source-visible evidence path without legal conclusions.
 model: inherit
 ---
 

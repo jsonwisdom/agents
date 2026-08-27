@@ -1,6 +1,6 @@
 # claude-agents — multi-harness agentic plugin marketplace
 
-Production-ready agentic-workflow building blocks: **92 plugins** (88 local + 4 external), **199 agents**, **162 skills**, **106 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and Qwen Code from a single Markdown source.
+Production-ready agentic-workflow building blocks: **100 plugins** (96 local + 4 external), **207 agents**, **170 skills**, **117 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and Qwen Code from a single Markdown source.
 
 This file is the canonical context file. Codex / Cursor / OpenCode read it directly. Claude Code reads it via `CLAUDE.md`, a symlink to this file. Gemini CLI reads it via `gemini-extension.json` (`contextFileName`); Qwen Code via `qwen-extension.json`.
 
@@ -10,8 +10,8 @@ This file is the canonical context file. Codex / Cursor / OpenCode read it direc
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** — top-level architectural overview (adapter framework, source-of-truth invariant, capability matrix summary)
 - **[docs/architecture.md](docs/architecture.md)** — detailed design principles
-- **[docs/plugins.md](docs/plugins.md)** — full plugin catalog (92 plugins by category)
-- **[docs/agents.md](docs/agents.md)** — agent reference (199 agents, model tiers)
+- **[docs/plugins.md](docs/plugins.md)** — full plugin catalog (100 plugins by category)
+- **[docs/agents.md](docs/agents.md)** — agent reference (207 agents, model tiers)
 - **[docs/agent-skills.md](docs/agent-skills.md)** — skill reference (progressive disclosure model)
 - **[docs/usage.md](docs/usage.md)** — commands, workflows, examples
 - **[docs/authoring.md](docs/authoring.md)** — portable-content style guide (read before adding plugins)
@@ -53,7 +53,7 @@ Generated artifacts are **committed** so each harness installs natively from a c
 
 ## Skills (cross-harness)
 
-162 skills under `plugins/*/skills/<n>/SKILL.md` — discoverable by every harness:
+170 skills under `plugins/*/skills/<n>/SKILL.md` — discoverable by every harness:
 
 - **Claude Code**: auto-discovery via Anthropic's SKILL.md spec
 - **Codex CLI**: mirrored to `.codex/skills/<plugin>__<skill>/` (8 KB body cap; detail in `references/details.md`)
@@ -66,7 +66,7 @@ Top-level `skills/` is Gemini output; do not use it for OpenCode installs.
 
 ## Subagents (cross-harness)
 
-199 subagents under `plugins/*/agents/<name>.md`. Per-harness transpilation:
+207 subagents under `plugins/*/agents/<name>.md`. Per-harness transpilation:
 
 - **Codex**: `.codex/agents/<plugin>__<agent>.toml` (drop `tools:`, map model alias to the GPT-5.x family, infer `sandbox_mode`)
 - **OpenCode**: `.opencode/agents/<plugin>__<agent>.md` with `mode: subagent` + `permission:` block (locked agents — those with source `tools: []` — get deny-everything except base `skill`/`task`)

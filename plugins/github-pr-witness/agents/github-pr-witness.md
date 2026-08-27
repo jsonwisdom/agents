@@ -1,6 +1,6 @@
 ---
-name: github-pr-witness-github-pr-witness
-description: Use PROACTIVELY when producing a witness-only evidence summary of a GitHub pull request.
+name: github-pr-witness
+description: Witness-only GitHub pull request evidence reporter. Use when inspecting a PR for reviewer-facing evidence, missing receipts, or unsafe success language.
 model: inherit
 ---
 

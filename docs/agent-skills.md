@@ -1,6 +1,6 @@
 # Agent Skills
 
-Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **162 local specialized skills** across 46 plugins, enabling progressive disclosure and efficient token usage.
+Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **170 local specialized skills** across 49 plugins, enabling progressive disclosure and efficient token usage.
 
 ## Overview
 
@@ -342,6 +342,29 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **protect-mcp-setup**  | Configure Cedar policy enforcement and Ed25519 signed receipts for tool calls; example policies for research/dev/production  |
 
+### Computer Wisdom Assistant (4 skills)
+
+| Skill                       | Description                                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **evidence-first-judgment** | Judge technical claims against observable evidence instead of intention or confident wording         |
+| **bounded-authority**       | Bound task scope, tools, stop conditions, and mutation rights before work starts                     |
+| **replayable-reasoning**    | Write determinations another session can replay from artifacts, not chat memory                      |
+| **complexity-budget**       | Spend complexity only on essential difficulty; prefer composition and refuse speculative layers      |
+
+### X Wisdom (2 skills)
+
+| Skill               | Description                                                                 |
+| ------------------- | --------------------------------------------------------------------------- |
+| **x-read-evidence** | Read X posts as observed locators, not as proof of the world                |
+| **x-post-gate**     | Draft X posts as labor; wait for Jason's exact-action approval before send  |
+
+### Wisdom Team (2 skills)
+
+| Skill                | Description                                                                 |
+| -------------------- | --------------------------------------------------------------------------- |
+| **reverse-replay**   | Reconstruct question, brains, and implied labor from locators that already exist |
+| **team-from-replay** | Name the smallest covering roster from that record in the same turn         |
+
 ### Social Publishing (1 skill)
 
 | Skill                  | Description                                                                                                              |
@@ -392,7 +415,7 @@ fastapi-templates skill → Supplies production-ready templates
 
 ## Specification Compliance
 
-All 162 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
+All 170 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
 
 - ✓ Required `name` field (hyphen-case)
 - ✓ Required `description` field with "Use when" clause
