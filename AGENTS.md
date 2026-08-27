@@ -1,6 +1,6 @@
 # claude-agents — multi-harness agentic plugin marketplace
 
-Production-ready agentic-workflow building blocks: **100 plugins** (96 local + 4 external), **207 agents**, **170 skills**, **117 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and Qwen Code from a single Markdown source.
+Production-ready agentic-workflow building blocks: **100 plugins** (96 local + 4 external), **207 agents**, **171 skills**, **117 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and Qwen Code from a single Markdown source.
 
 This file is the canonical context file. Codex / Cursor / OpenCode read it directly. Claude Code reads it via `CLAUDE.md`, a symlink to this file. Gemini CLI reads it via `gemini-extension.json` (`contextFileName`); Qwen Code via `qwen-extension.json`.
 
@@ -53,7 +53,7 @@ Generated artifacts are **committed** so each harness installs natively from a c
 
 ## Skills (cross-harness)
 
-170 skills under `plugins/*/skills/<n>/SKILL.md` — discoverable by every harness:
+171 skills under `plugins/*/skills/<n>/SKILL.md` — discoverable by every harness:
 
 - **Claude Code**: auto-discovery via Anthropic's SKILL.md spec
 - **Codex CLI**: mirrored to `.codex/skills/<plugin>__<skill>/` (8 KB body cap; detail in `references/details.md`)

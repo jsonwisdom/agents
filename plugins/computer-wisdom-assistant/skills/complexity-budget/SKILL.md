@@ -128,6 +128,6 @@ A narrow shared module for *that rule* can be essential. A new "domain layer" fo
 
 ## Related
 
-Companion skills: `skills/evidence-first-judgment`, `skills/bounded-authority`, `skills/replayable-reasoning`.
+Companion skills: `skills/evidence-first-judgment`, `skills/bounded-authority`, `skills/replayable-reasoning`, `skills/pattern-fidelity`.
 
 See `references/details.md` for composition tests, YAGNI checks, and worked tradeoffs.
