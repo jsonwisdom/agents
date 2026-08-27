@@ -2,7 +2,7 @@
 """Unified CLI for emitting per-harness artifacts from claude-agents plugin sources.
 
 Usage:
-    python tools/generate.py --harness <codex|copilot|cursor|opencode|gemini> [--plugin <name>] [--all] [--clean] [--prune] [--strict]
+    python tools/generate.py --harness <codex|copilot|cursor|opencode|gemini|qwen> [--plugin <name>] [--all] [--clean] [--prune] [--strict]
 """
 
 from __future__ import annotations
@@ -35,6 +35,7 @@ _HARNESS_TARGETS = {
     "opencode": [".opencode", "opencode.json"],
     "gemini": ["commands", "agents", "skills"],
     "copilot": [".copilot/agents", ".copilot/skills", ".copilot/commands"],
+    "qwen": [".qwen"],
 }
 
 
@@ -60,6 +61,10 @@ def get_adapter(harness_id: str, output_root: Path) -> HarnessAdapter:
         from tools.adapters.copilot import CopilotAdapter
 
         return CopilotAdapter(output_root=output_root)
+    if harness_id == "qwen":
+        from tools.adapters.qwen import QwenAdapter
+
+        return QwenAdapter(output_root=output_root)
     raise ValueError(f"Unknown harness: {harness_id}. Supported: {supported_harnesses()}")
 
 
@@ -176,6 +181,10 @@ def prune_orphans(harness_id: str, output_root: Path, written: set[Path]) -> lis
         ):
             if sub_path.is_dir():
                 candidates.extend(p for p in sub_path.rglob("*") if p.is_file())
+    elif harness_id == "qwen":
+        d = output_root / ".qwen"
+        if d.is_dir():
+            candidates.extend(p for p in d.rglob("*") if p.is_file())
 
     for f in candidates:
         if f.resolve() not in written_resolved:
@@ -192,7 +201,7 @@ def main() -> int:
         "--harness",
         required=True,
         choices=supported_harnesses(),
-        help="Target harness (codex, copilot, cursor, opencode, or gemini).",
+        help="Target harness (codex, copilot, cursor, opencode, gemini, or qwen).",
     )
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--plugin", help="Generate only for the named plugin.")

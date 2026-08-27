@@ -209,7 +209,9 @@ jobs:
             .cursor/
             .cursor-plugin/
             .opencode/
+            .qwen/
             opencode.json
+            qwen-extension.json
             commands/
             agents/
             skills/

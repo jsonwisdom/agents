@@ -37,11 +37,12 @@ node_modules
 #   .cursor/                              curated Cursor rules
 #   .agents/plugins/marketplace.json      Codex marketplace registry
 #   plugins/*/.codex-plugin/plugin.json   per-plugin Codex manifest (tracked under plugins/)
-# Gemini + OpenCode install via clone + `make` (their transformed trees below stay ignored).
+# Gemini + OpenCode + Qwen install via clone + `make` (their transformed trees below stay ignored).
 #
 # AGENTS.md is the committed canonical context file; Codex/Cursor/OpenCode read it
-# directly, Claude Code reads it via CLAUDE.md (a symlink to AGENTS.md), and Gemini CLI
-# reads it via gemini-extension.json (`contextFileName`) / .gemini/settings.json.
+# directly, Claude Code reads it via CLAUDE.md (a symlink to AGENTS.md), Gemini CLI
+# reads it via gemini-extension.json (`contextFileName`) / .gemini/settings.json, and
+# Qwen Code reads it via qwen-extension.json (`contextFileName`).
 
 # Codex CLI — transformed skills/agents (local generation; the marketplace reads source)
 .codex/
@@ -61,6 +62,10 @@ commands/**/*.toml
 /commands/
 /agents/
 /skills/
+
+# Qwen Code — transformed trees (install via clone + `make generate HARNESS=qwen`).
+# qwen-extension.json at repo root is committed (native-install manifest).
+.qwen/
 
 # Local agent caches (but NOT the committed Codex marketplace under .agents/plugins/)
 .agent/

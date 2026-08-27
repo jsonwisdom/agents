@@ -22,7 +22,7 @@ help:
 	@echo "claude-agents — multi-harness plugin marketplace"
 	@echo "================================================="
 	@echo ""
-	@echo "Multi-harness adapter (Codex / Cursor / OpenCode / Gemini):"
+	@echo "Multi-harness adapter (Codex / Cursor / OpenCode / Gemini / Qwen):"
 	@echo "  make generate HARNESS=<h> [PLUGIN=<p>]           Generate per-harness artifacts (defaults to all plugins)"
 	@echo "  make generate-all                                Generate for ALL harnesses + ALL plugins"
 	@echo "  make clean-generated [HARNESS=<h>]               Remove generated artifacts"
@@ -161,7 +161,7 @@ clean:
 #   make generate-all
 #   make clean-generated HARNESS=opencode
 
-HARNESSES := codex copilot cursor gemini opencode
+HARNESSES := codex copilot cursor gemini opencode qwen
 
 generate:
 ifndef HARNESS
@@ -201,6 +201,7 @@ test:
 # of opencode / gemini / codex / claude are on PATH. Per-CLI tests skip gracefully
 # when the binary is missing — so local devs only exercise what they have installed.
 # CI installs OpenCode + Gemini + Codex and turns those skips into hard requirements.
+# Qwen Code is optional — tests skip unless `qwen` is on PATH.
 smoke-test:
 	@if [ ! -d .opencode ] || [ ! -d .codex ] || [ ! -d commands ]; then \
 		echo "Generating harness artifacts first..."; \

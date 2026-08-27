@@ -22,6 +22,7 @@ from tools.adapters.copilot import (
 from tools.adapters.cursor import CursorAdapter
 from tools.adapters.gemini import _INLINE_BODY_THRESHOLD, GeminiAdapter
 from tools.adapters.opencode import OpenCodeAdapter, _opencode_skill_id
+from tools.adapters.qwen import QwenAdapter
 
 # ── Codex ────────────────────────────────────────────────────────────────────
 
@@ -930,6 +931,109 @@ class TestGeminiAdapter:
         assert "demo__hello" in content
 
 
+# ── Qwen Code ────────────────────────────────────────────────────────────────
+
+
+class TestQwenAdapter:
+    def test_emits_namespaced_skill_under_dot_qwen(
+        self, synthetic_plugin: PluginSource, output_root: Path
+    ):
+        QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
+        skill_md = output_root / ".qwen" / "skills" / "demo__hello" / "SKILL.md"
+        assert skill_md.is_file()
+        fm, _ = parse_frontmatter(skill_md.read_text())
+        assert fm["name"] == "demo__hello"
+
+    def test_emits_agent_with_inherit_model(
+        self, synthetic_plugin: PluginSource, output_root: Path
+    ):
+        QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
+        agent_md = output_root / ".qwen" / "agents" / "demo__greeter.md"
+        assert agent_md.is_file()
+        fm, _ = parse_frontmatter(agent_md.read_text())
+        assert fm["name"] == "demo__greeter"
+        assert fm["model"] == "inherit"
+        assert fm["tools"] == ["read_file", "grep_search"]
+
+    def test_haiku_maps_to_fast(self, tmp_path: Path, output_root: Path):
+        from tools.tests.conftest import _make_agent
+
+        plugin_dir = tmp_path / "demo"
+        plugin_dir.mkdir()
+        (plugin_dir / ".claude-plugin").mkdir()
+        (plugin_dir / ".claude-plugin" / "plugin.json").write_text('{"name": "demo"}')
+        agent = _make_agent(
+            plugin_dir,
+            "speedy",
+            "name: speedy\ndescription: Use when going fast.\nmodel: haiku",
+            "# Speedy\n",
+        )
+        plugin = PluginSource(
+            name="demo", dir=plugin_dir, plugin_json={"name": "demo"}, agents=[agent]
+        )
+        QwenAdapter(output_root=output_root).emit_plugin(plugin)
+        fm, _ = parse_frontmatter(
+            (output_root / ".qwen" / "agents" / "demo__speedy.md").read_text()
+        )
+        assert fm["model"] == "fast"
+
+    def test_command_markdown_uses_args_placeholder(
+        self, synthetic_plugin: PluginSource, output_root: Path
+    ):
+        QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
+        cmd = output_root / ".qwen" / "commands" / "demo" / "say-hi.md"
+        assert cmd.is_file()
+        fm, body = parse_frontmatter(cmd.read_text())
+        assert fm["description"] == "Send a greeting"
+        assert "{{args}}" in body
+        assert body.rstrip().endswith("{{args}}") or "{{args}}" in body
+        assert "$ARGUMENTS" not in body
+
+    def test_plugin_entry_command(self, synthetic_plugin: PluginSource, output_root: Path):
+        QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
+        entry = output_root / ".qwen" / "commands" / "demo.md"
+        assert entry.is_file()
+        content = entry.read_text()
+        assert "demo__greeter" in content
+        assert "demo__hello" in content
+        assert "/demo:say-hi" in content
+        assert "{{args}}" in content
+
+    def test_does_not_emit_to_gemini_root(self, synthetic_plugin: PluginSource, output_root: Path):
+        QwenAdapter(output_root=output_root).emit_plugin(synthetic_plugin)
+        assert not (output_root / "skills").exists()
+        assert not (output_root / "agents").exists()
+        assert not (output_root / "commands").exists()
+
+    def test_emit_global_writes_extension_manifest(
+        self, synthetic_plugin: PluginSource, output_root: Path
+    ):
+        mp_dir = output_root / ".claude-plugin"
+        mp_dir.mkdir()
+        (mp_dir / "marketplace.json").write_text(
+            json.dumps(
+                {
+                    "name": "claude-code-workflows",
+                    "metadata": {
+                        "version": "1.7.1",
+                        "description": "Marketplace for tests.",
+                    },
+                }
+            )
+        )
+        result = QwenAdapter(output_root=output_root).emit_global([synthetic_plugin])
+        ext = output_root / "qwen-extension.json"
+        assert ext in result.written
+        data = json.loads(ext.read_text())
+        assert data["name"] == "claude-code-workflows"
+        assert data["version"] == "1.7.1"
+        assert data["contextFileName"] == "AGENTS.md"
+        assert data["commands"] == ".qwen/commands"
+        assert data["skills"] == ".qwen/skills"
+        assert data["agents"] == ".qwen/agents"
+        assert not (output_root / "QWEN.md").exists()
+
+
 # ── Copilot ──────────────────────────────────────────────────────────────────
 
 
@@ -1192,6 +1296,7 @@ class TestCapabilities:
             CursorAdapter,
             GeminiAdapter,
             OpenCodeAdapter,
+            QwenAdapter,
         ):
             assert adapter_cls.harness_id in CAPABILITIES
 

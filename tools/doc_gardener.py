@@ -3,7 +3,7 @@
 
 Per the OpenAI harness engineering pattern, a recurring task scans for:
 1. Generated artifacts whose source file is newer (regenerate needed)
-2. Context files (AGENTS.md, GEMINI.md, CLAUDE.md) above ~150 lines
+2. Context files (AGENTS.md, GEMINI.md, QWEN.md, CLAUDE.md) above ~150 lines
 3. Dead links from docs/ into plugins/ or other docs/
 4. Skills above 8 KB body without `references/` (Codex hard cap)
 5. Plugin entries in marketplace.json without a corresponding plugins/<name>/ directory
@@ -37,6 +37,7 @@ MARKETPLACE_JSON = WORKTREE / ".claude-plugin" / "marketplace.json"
 CONTEXT_FILES = {
     "AGENTS.md": 150,
     "GEMINI.md": 150,
+    "QWEN.md": 150,
     "CLAUDE.md": 200,  # slightly larger since it documents the source-of-truth
 }
 
@@ -197,6 +198,40 @@ def check_stale_artifacts(report: Report) -> None:
                         src = PLUGINS_DIR / plugin / "agents" / f"{leaf}.md"
                     if src.is_file():
                         pairs.append((src, gen))
+
+    # Qwen skills / agents / commands under .qwen/ (mirrors Gemini layout, isolated root)
+    qwen_skills = WORKTREE / ".qwen" / "skills"
+    if qwen_skills.is_dir():
+        for skill_md in qwen_skills.glob("*/SKILL.md"):
+            name = skill_md.parent.name
+            if "__" in name:
+                plugin, leaf = name.split("__", 1)
+                src = PLUGINS_DIR / plugin / "skills" / leaf / "SKILL.md"
+                if src.is_file():
+                    pairs.append((src, skill_md))
+    qwen_agents = WORKTREE / ".qwen" / "agents"
+    if qwen_agents.is_dir():
+        for md in qwen_agents.glob("*.md"):
+            name = md.stem
+            if "__" in name:
+                plugin, agent = name.split("__", 1)
+                src = PLUGINS_DIR / plugin / "agents" / f"{agent}.md"
+                if src.is_file():
+                    pairs.append((src, md))
+    qwen_commands = WORKTREE / ".qwen" / "commands"
+    if qwen_commands.is_dir():
+        for md in qwen_commands.rglob("*.md"):
+            if md.parent == qwen_commands:
+                plugin = md.stem
+                src = PLUGINS_DIR / plugin / ".claude-plugin" / "plugin.json"
+                if src.is_file():
+                    pairs.append((src, md))
+            else:
+                plugin = md.parent.name
+                cmd = md.stem
+                src = PLUGINS_DIR / plugin / "commands" / f"{cmd}.md"
+                if src.is_file():
+                    pairs.append((src, md))
 
     # Gemini commands at commands/<plugin>/<cmd>.toml -> plugins/<plugin>/commands/<cmd>.md
     gemini_commands = WORKTREE / "commands"

@@ -14,7 +14,7 @@ body:
         Read [docs/authoring.md](https://github.com/wshobson/agents/blob/main/docs/authoring.md)
         before submitting — it covers the portable-content style guide that
         keeps your component working across Claude Code, Codex CLI, Cursor,
-        OpenCode, and Gemini CLI.
+        OpenCode, Gemini CLI, and Qwen Code.
 
         **Important**: Only propose components for legitimate, constructive
         use cases. Proposals for malicious or harmful capabilities will be

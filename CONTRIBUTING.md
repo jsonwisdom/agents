@@ -1,7 +1,7 @@
 # Contributing to claude-agents
 
-Thanks for your interest in contributing. This marketplace ships to six agentic
-harnesses (Claude Code, OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, GitHub Copilot) from a single
+Thanks for your interest in contributing. This marketplace ships to seven agentic
+harnesses (Claude Code, OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, GitHub Copilot, Qwen Code) from a single
 Markdown source.
 
 ## Start here
@@ -55,7 +55,7 @@ uv run ty check ../../tools/ src/plugin_eval/
 
 ## Cross-harness portability checklist
 
-Your content ships to five harnesses — some have stricter conventions than Claude Code:
+Your content ships to every generated harness — some have stricter conventions than Claude Code:
 
 - **Codex** hard-truncates skill bodies at 8 KB. Keep `SKILL.md` short; push detail
   into `references/details.md`.

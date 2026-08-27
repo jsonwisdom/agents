@@ -41,6 +41,7 @@ body:
         - Cursor
         - OpenCode
         - Gemini CLI
+        - Qwen Code
         - Multiple harnesses
         - Adapter framework / tooling (not a specific harness)
     validations:

@@ -13,6 +13,7 @@ from tools.validate_generated import (
     validate_cursor,
     validate_gemini,
     validate_opencode,
+    validate_qwen,
 )
 
 
@@ -413,3 +414,77 @@ class TestGeminiValidator:
         assert any(
             "GEMINI.md" in str(f.path) and "cap: 150" in f.message for f in report.warnings()
         )
+
+
+# ── Qwen Code ────────────────────────────────────────────────────────────────
+
+
+class TestQwenValidator:
+    def test_prompt_without_args_warns(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _patch_worktree(monkeypatch, tmp_path)
+        cmds = tmp_path / ".qwen" / "commands"
+        cmds.mkdir(parents=True)
+        (cmds / "no_args.md").write_text("---\ndescription: Test\n---\n\nRun this.\n")
+
+        report = Report()
+        validate_qwen(report)
+        assert any("{{args}}" in f.message for f in report.warnings())
+
+    def test_missing_command_frontmatter_errors(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ):
+        _patch_worktree(monkeypatch, tmp_path)
+        cmds = tmp_path / ".qwen" / "commands"
+        cmds.mkdir(parents=True)
+        (cmds / "bare.md").write_text("No frontmatter here.\n{{args}}\n")
+
+        report = Report()
+        validate_qwen(report)
+        assert any("frontmatter" in f.message for f in report.errors())
+
+    def test_skill_name_mismatch_errors(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _patch_worktree(monkeypatch, tmp_path)
+        sk = tmp_path / ".qwen" / "skills" / "demo__hello"
+        sk.mkdir(parents=True)
+        (sk / "SKILL.md").write_text(
+            "---\nname: WRONG\ndescription: Use when testing.\n---\n\nBody.\n"
+        )
+
+        report = Report()
+        validate_qwen(report)
+        assert any("name" in f.message and "directory" in f.message for f in report.errors())
+
+    def test_malformed_extension_json_errors(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _patch_worktree(monkeypatch, tmp_path)
+        (tmp_path / "qwen-extension.json").write_text("{not json")
+
+        report = Report()
+        validate_qwen(report)
+        assert any("JSON parse" in f.message for f in report.errors())
+
+    def test_wrong_context_file_errors(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _patch_worktree(monkeypatch, tmp_path)
+        (tmp_path / "qwen-extension.json").write_text(
+            '{"name": "x", "version": "1", "contextFileName": "QWEN.md",'
+            ' "commands": ".qwen/commands", "skills": ".qwen/skills",'
+            ' "agents": ".qwen/agents"}\n'
+        )
+
+        report = Report()
+        validate_qwen(report)
+        assert any("AGENTS.md" in f.message for f in report.errors())
+
+    def test_oversized_qwen_md_warns(self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+        _patch_worktree(monkeypatch, tmp_path)
+        (tmp_path / "QWEN.md").write_text("\n".join(["line"] * 200))
+
+        report = Report()
+        validate_qwen(report)
+        assert any("QWEN.md" in str(f.path) and "cap: 150" in f.message for f in report.warnings())
+
+    def test_every_supported_harness_has_validator(self):
+        from tools.adapters.capabilities import supported_harnesses
+        from tools.validate_generated import _VALIDATORS
+
+        for harness in supported_harnesses():
+            assert harness in _VALIDATORS, f"{harness} missing from _VALIDATORS"

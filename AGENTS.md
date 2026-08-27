@@ -1,10 +1,10 @@
 # claude-agents — multi-harness agentic plugin marketplace
 
-Production-ready agentic-workflow building blocks: **100 plugins** (96 local + 4 external), **207 agents**, **170 skills**, **117 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, and Gemini CLI from a single Markdown source.
+Production-ready agentic-workflow building blocks: **100 plugins** (96 local + 4 external), **207 agents**, **170 skills**, **117 commands**. Native source-of-truth for Claude Code; also consumed by OpenAI Codex CLI, Cursor, OpenCode, Gemini CLI, and Qwen Code from a single Markdown source.
 
-This file is the canonical context file. Codex / Cursor / OpenCode read it directly. Claude Code reads it via `CLAUDE.md`, a symlink to this file. Gemini CLI reads it via `gemini-extension.json` (`contextFileName`) / `.gemini/settings.json`.
+This file is the canonical context file. Codex / Cursor / OpenCode read it directly. Claude Code reads it via `CLAUDE.md`, a symlink to this file. Gemini CLI reads it via `gemini-extension.json` (`contextFileName`); Qwen Code via `qwen-extension.json`.
 
-> **Read this file like a table of contents.** Detail lives in `docs/`. Authoring conventions live in `docs/authoring.md`. Per-harness setup and capability deltas live in [`docs/harnesses.md`](docs/harnesses.md). Gemini-specific setup is in `GEMINI.md` (also auto-loaded by Gemini CLI). This file should never grow beyond ~150 lines (per OpenAI's [harness-engineering](https://openai.com/index/harness-engineering/) practice).
+> **Read this file like a table of contents.** Detail lives in `docs/`. Authoring conventions live in `docs/authoring.md`. Per-harness setup and capability deltas live in [`docs/harnesses.md`](docs/harnesses.md). Gemini-specific setup is in `GEMINI.md`; Qwen-specific setup is in `QWEN.md`. This file should never grow beyond ~150 lines (per OpenAI's [harness-engineering](https://openai.com/index/harness-engineering/) practice).
 
 ## Map
 
@@ -45,7 +45,8 @@ make generate HARNESS=codex      # .codex/skills, .codex/agents, .codex/plugins/
 make generate HARNESS=cursor     # .cursor-plugin/{marketplace,plugin}.json, .cursor/rules/
 make generate HARNESS=opencode   # .opencode/{skills,agents,commands,plugins}/, opencode.json
 make generate HARNESS=gemini     # skills/, agents/, commands/ at extension root
-make generate-all                # all four
+make generate HARNESS=qwen       # .qwen/{skills,agents,commands}/, qwen-extension.json
+make generate-all                # all generated harnesses
 ```
 
 Generated artifacts are **committed** so each harness installs natively from a clone / GitHub URL (native-install commands in [`docs/harnesses.md`](docs/harnesses.md)). Run `make generate-all` before committing source changes — CI fails on drift. Source-of-truth lives only under `plugins/`; never hand-edit generated files.
@@ -59,6 +60,7 @@ Generated artifacts are **committed** so each harness installs natively from a c
 - **OpenCode**: mirrored to `.opencode/skills/<plugin>-<skill>/` using hyphenated names for global install
 - **Cursor**: reads `.claude/skills/` directly (no re-emit)
 - **Gemini CLI**: native skills at `skills/<plugin>__<skill>/SKILL.md`
+- **Qwen Code**: `.qwen/skills/<plugin>__<skill>/SKILL.md`
 
 Top-level `skills/` is Gemini output; do not use it for OpenCode installs.
 
@@ -69,6 +71,7 @@ Top-level `skills/` is Gemini output; do not use it for OpenCode installs.
 - **Codex**: `.codex/agents/<plugin>__<agent>.toml` (drop `tools:`, map model alias to the GPT-5.x family, infer `sandbox_mode`)
 - **OpenCode**: `.opencode/agents/<plugin>__<agent>.md` with `mode: subagent` + `permission:` block (locked agents — those with source `tools: []` — get deny-everything except base `skill`/`task`)
 - **Gemini**: `agents/<plugin>__<agent>.md` (April 2026 subagent spec)
+- **Qwen Code**: `.qwen/agents/<plugin>__<agent>.md` (`inherit` / `fast`)
 - **Cursor**: reads `.claude/agents/` directly
 
 ## Why this file is short

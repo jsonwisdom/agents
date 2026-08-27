@@ -284,6 +284,46 @@ class TestGeminiRoundTrip:
 
 
 @pytest.mark.skipif(
+    not (WORKTREE / ".qwen" / "skills").is_dir(),
+    reason="Qwen artifacts not generated (run `make generate HARNESS=qwen` first)",
+)
+class TestQwenRoundTrip:
+    def test_qwen_skill_count_matches_source(self):
+        n = len(list((WORKTREE / ".qwen" / "skills").glob("*/SKILL.md")))
+        assert n == _source_skill_count(), (
+            f"skill count mismatch: source={_source_skill_count()} qwen={n}"
+        )
+
+    def test_qwen_agent_count_matches_source(self):
+        n = len(list((WORKTREE / ".qwen" / "agents").glob("*.md")))
+        assert n == _source_agent_count(), (
+            f"agent count mismatch: source={_source_agent_count()} qwen={n}"
+        )
+
+    def test_qwen_command_count_matches_source(self):
+        cmds = WORKTREE / ".qwen" / "commands"
+        nested = [p for p in cmds.rglob("*.md") if p.parent != cmds]
+        assert len(nested) == _source_command_count(), (
+            f"command count mismatch: source={_source_command_count()} qwen={len(nested)}"
+        )
+
+    def test_every_qwen_command_has_args(self):
+        problems = []
+        for md in (WORKTREE / ".qwen" / "commands").rglob("*.md"):
+            content = md.read_text()
+            if "{{args}}" not in content:
+                problems.append(str(md.relative_to(WORKTREE)))
+        assert not problems, "Qwen commands missing {{args}}:\n  " + "\n  ".join(problems[:20])
+
+    def test_qwen_md_within_cap(self):
+        qwen_md = WORKTREE / "QWEN.md"
+        if not qwen_md.is_file():
+            pytest.skip("QWEN.md missing")
+        lines = qwen_md.read_text().splitlines()
+        assert len(lines) <= 150, f"QWEN.md is {len(lines)} lines (cap: 150)"
+
+
+@pytest.mark.skipif(
     not (WORKTREE / ".copilot").is_dir(),
     reason="Copilot artifacts not generated (run `make generate HARNESS=copilot` first)",
 )
@@ -352,6 +392,17 @@ class TestNativeInstallManifests:
         assert data.get("name"), "gemini-extension.json needs a name"
         assert data.get("version"), "gemini-extension.json needs a version"
 
+    def test_qwen_extension_manifest(self):
+        path = WORKTREE / "qwen-extension.json"
+        assert path.is_file(), "qwen-extension.json missing"
+        data = json.loads(path.read_text())
+        assert data.get("contextFileName") == "AGENTS.md", "Qwen contextFileName must be AGENTS.md"
+        assert data.get("name"), "qwen-extension.json needs a name"
+        assert data.get("version"), "qwen-extension.json needs a version"
+        assert data.get("commands") == ".qwen/commands"
+        assert data.get("skills") == ".qwen/skills"
+        assert data.get("agents") == ".qwen/agents"
+
     def test_codex_marketplace_lists_all_local_plugins(self):
         marketplace = WORKTREE / ".agents" / "plugins" / "marketplace.json"
         assert marketplace.is_file(), ".agents/plugins/marketplace.json missing"
@@ -403,6 +454,7 @@ class TestContextFileBudgets:
             ("CLAUDE.md", 200),  # slightly looser; project source-of-truth
             ("CONTRIBUTING.md", 150),
             ("GEMINI.md", 150),
+            ("QWEN.md", 150),
             ("AGENTS.md", 150),
         ],
     )

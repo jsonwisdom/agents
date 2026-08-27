@@ -169,6 +169,26 @@ CAPABILITIES: dict[str, Capability] = {
         bare_model_aliases=False,
         notes="Auto-discovers skills/ and agents/ at extension root. TOML commands at commands/. Use @{path} for file injection in prompts. GEMINI.md is injected every prompt — keep tight.",
     ),
+    "qwen": Capability(
+        harness_id="qwen",
+        display_name="Qwen Code",
+        skills_native=True,
+        agents_native=True,
+        commands_native=True,
+        plugin_marketplace=False,  # direct GitHub / local-path install only
+        parallel_agents=True,  # fork subagents
+        tool_allowlist_per_agent=True,
+        todowrite=False,
+        task_spawn=True,  # agent tool
+        mcp_servers=True,
+        hooks=True,
+        context_file_name="QWEN.md",
+        context_file_max_lines=_CONTEXT_LINES_CAP,
+        skill_body_max_bytes=_NO_CAP,
+        tool_name_case="lowercase",
+        bare_model_aliases=False,  # use inherit / fast
+        notes="Emits to .qwen/{skills,agents,commands}/ so Gemini's extension-root trees are untouched. Markdown commands (TOML deprecated) with {{args}}. Committed qwen-extension.json points contextFileName at AGENTS.md; QWEN.md is a hand-authored setup guide.",
+    ),
 }
 
 
@@ -241,6 +261,19 @@ TOOL_NAME_MAPS: dict[str, dict[str, str]] = {
         "Agent": "@agent",
         "Task": "@agent",
     },
+    "qwen": {
+        "Read": "read_file",
+        "Edit": "edit",
+        "Write": "write_file",
+        "Bash": "run_shell_command",
+        "Grep": "grep_search",
+        "Glob": "glob",
+        "WebFetch": "web_fetch",
+        "WebSearch": "web_fetch",
+        "TodoWrite": "todo",
+        "Agent": "agent",
+        "Task": "agent",
+    },
 }
 
 
@@ -294,6 +327,13 @@ MODEL_ALIASES: dict[str, dict[str, str]] = {
         "sonnet": "gemini-2.5-pro",
         "haiku": "gemini-2.5-flash",
         "inherit": "gemini-2.5-pro",
+    },
+    "qwen": {
+        "fable": "inherit",
+        "opus": "inherit",
+        "sonnet": "inherit",
+        "haiku": "fast",
+        "inherit": "inherit",
     },
 }
 
