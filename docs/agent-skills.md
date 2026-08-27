@@ -1,6 +1,6 @@
 # Agent Skills
 
-Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **170 local specialized skills** across 49 plugins, enabling progressive disclosure and efficient token usage.
+Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **171 local specialized skills** across 49 plugins, enabling progressive disclosure and efficient token usage.
 
 ## Overview
 
@@ -342,7 +342,7 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **protect-mcp-setup**  | Configure Cedar policy enforcement and Ed25519 signed receipts for tool calls; example policies for research/dev/production  |
 
-### Computer Wisdom Assistant (4 skills)
+### Computer Wisdom Assistant (5 skills)
 
 | Skill                       | Description                                                                                          |
 | --------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -350,6 +350,7 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | **bounded-authority**       | Bound task scope, tools, stop conditions, and mutation rights before work starts                     |
 | **replayable-reasoning**    | Write determinations another session can replay from artifacts, not chat memory                      |
 | **complexity-budget**       | Spend complexity only on essential difficulty; prefer composition and refuse speculative layers      |
+| **pattern-fidelity**        | Stay inside the send; honor HOLD/BLOCKED; treat teaching as STORY_FORM not evidence; prefer small change |
 
 ### X Wisdom (2 skills)
 
@@ -415,7 +416,7 @@ fastapi-templates skill → Supplies production-ready templates
 
 ## Specification Compliance
 
-All 170 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
+All 171 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
 
 - ✓ Required `name` field (hyphen-case)
 - ✓ Required `description` field with "Use when" clause

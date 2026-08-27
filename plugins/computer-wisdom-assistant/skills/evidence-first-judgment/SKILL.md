@@ -130,6 +130,6 @@ Determination: `BLOCKED`. A branch is a pointer, not a deploy receipt.
 
 ## Related
 
-Companion skills: `skills/bounded-authority`, `skills/replayable-reasoning`, `skills/complexity-budget`.
+Companion skills: `skills/bounded-authority`, `skills/replayable-reasoning`, `skills/complexity-budget`, `skills/pattern-fidelity`.
 
 See `references/details.md` for the full claim catalog, falsifier prompts, and worked receipt shapes.

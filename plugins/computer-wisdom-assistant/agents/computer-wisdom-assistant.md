@@ -45,6 +45,7 @@ Open the matching skill before answering. Do not rely on this agent body as the 
 | Scope, stop conditions, mutations, approvals, MCP/tool permission | `skills/bounded-authority` |
 | Determinations that another session must be able to replay | `skills/replayable-reasoning` |
 | Abstractions, new layers, "just in case" design, YAGNI, Unix composition | `skills/complexity-budget` |
+| Self-start, closed doors, teaching-as-proof, ENS/wallet labels, grand gestures | `skills/pattern-fidelity` |
 
 If two skills apply, load both. If none apply, still keep the core posture.
 

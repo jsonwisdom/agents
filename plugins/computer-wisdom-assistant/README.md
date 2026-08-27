@@ -15,7 +15,7 @@ Judgment plugin for technical claims, design tradeoffs, and engineering decision
 
 ### Agent
 
-- **computer-wisdom-assistant** — specialist for evidence-first review, bounded authority, replayable determinations, and complexity budgets. `authority=false` by default.
+- **computer-wisdom-assistant** — specialist for evidence-first review, bounded authority, replayable determinations, complexity budgets, and pattern fidelity. `authority=false` by default.
 
 ### Agent Skills
 
@@ -25,6 +25,7 @@ Judgment plugin for technical claims, design tradeoffs, and engineering decision
 | **bounded-authority** | Scoping work, mutations, MCP/tool permission, stop conditions |
 | **replayable-reasoning** | Decisions that another session must be able to replay |
 | **complexity-budget** | New layers, abstractions, ship vs polish, YAGNI |
+| **pattern-fidelity** | Self-started work, closed doors, STORY_FORM vs evidence, ENS labels, grand gestures |
 
 ### Commands
 
@@ -50,6 +51,9 @@ Skills activate from the question:
 
 "Why did we choose a queue here?"
 → complexity-budget + replayable-reasoning
+
+"This teaching proves we should bind the wallet and ship a new agent."
+→ pattern-fidelity (STORY_FORM is not evidence; no identity bind; small change or BLOCKED)
 ```
 
 Or invoke the agent / commands directly.
@@ -58,10 +62,11 @@ Or invoke the agent / commands directly.
 
 - Jason is the brains; Jay is the labor
 - witness-only unless the operator (brains) approves an exact mutation
-- no fake green
+- no fake green; HOLD / BLOCKED is valid
 - no unbounded tasks
 - complexity is a budget
 - determinations are replayable from locators, not chat memory
+- STORY_FORM (teaching presentation) is not evidence; declared labels stay unbound
 
 Composes with receipt and review plugins; it does not replace CI or cryptographic enforcement.
 

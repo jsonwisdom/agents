@@ -125,6 +125,6 @@ A previous turn said tests passed. This record does not inherit that. Either att
 
 ## Related
 
-Companion skills: `skills/evidence-first-judgment`, `skills/bounded-authority`, `skills/complexity-budget`.
+Companion skills: `skills/evidence-first-judgment`, `skills/bounded-authority`, `skills/complexity-budget`, `skills/pattern-fidelity`.
 
 See `references/details.md` for locator patterns, anti-patterns, and a compact receipt template.

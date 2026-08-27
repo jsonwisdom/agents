@@ -221,7 +221,7 @@ Complete reference for all **207 local specialized AI agents** organized by cate
 | [payment-integration](../plugins/payment-processing/agents/payment-integration.md)      | sonnet | Payment processor integration (Stripe, PayPal)          |
 | [legacy-modernizer](../plugins/framework-migration/agents/legacy-modernizer.md)         | sonnet | Legacy code refactoring and modernization               |
 | [context-manager](../plugins/agent-orchestration/agents/context-manager.md)             | haiku  | Multi-agent context management                          |
-| [computer-wisdom-assistant](../plugins/computer-wisdom-assistant/agents/computer-wisdom-assistant.md) | inherit | Evidence-first judgment, bounded authority, replayable determinations, complexity budgets |
+| [computer-wisdom-assistant](../plugins/computer-wisdom-assistant/agents/computer-wisdom-assistant.md) | inherit | Evidence-first judgment, bounded authority, replayable determinations, complexity budgets, pattern fidelity |
 | [fork-coordinator](../plugins/agent-fork-coordinator/agents/fork-coordinator.md) | inherit | Witness-only bounded subagent research and debug coordination |
 | [receipt-auditor](../plugins/receipt-governance/agents/receipt-auditor.md) | inherit | Receipt-first review of PRs, commits, workflows, and technical claims |
 | [github-pr-witness](../plugins/github-pr-witness/agents/github-pr-witness.md) | inherit | Witness-only GitHub PR evidence reports |

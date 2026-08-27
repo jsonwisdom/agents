@@ -15,7 +15,7 @@ Computer wisdom starts with a fence. This skill defines what a session may obser
 - A conversation that has outgrown its original question
 - "just fix it" with no stop condition
 
-Load `skills/evidence-first-judgment` before treating a result as success. Load `skills/replayable-reasoning` for the task record. Load `skills/complexity-budget` if the proposed work is a new system rather than a bounded change.
+Load `skills/evidence-first-judgment` before treating a result as success. Load `skills/replayable-reasoning` for the task record. Load `skills/complexity-budget` if the proposed work is a new system rather than a bounded change. Load `skills/pattern-fidelity` when there is no send, a door is closed, or a story is being treated as a mandate.
 
 ## Inputs this skill accepts
 
@@ -170,6 +170,6 @@ Do not call it. Report the class and wait.
 
 ## Related
 
-Companion skills: `skills/evidence-first-judgment`, `skills/replayable-reasoning`, `skills/complexity-budget`.
+Companion skills: `skills/evidence-first-judgment`, `skills/replayable-reasoning`, `skills/complexity-budget`, `skills/pattern-fidelity`.
 
 See `references/details.md` for unsafe delegation patterns, stop-condition recipes, and MCP classification notes.

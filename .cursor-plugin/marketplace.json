@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 170 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 171 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -277,8 +277,8 @@
     {
       "name": "computer-wisdom-assistant",
       "source": "./plugins/computer-wisdom-assistant",
-      "version": "1.0.1",
-      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus Agent Skills for evidence-first review, bounded authority, replayable reasoning, and complexity budgets. Jason is the brains; Jay is the labor.",
+      "version": "1.0.2",
+      "description": "Judgment assistant for technical claims, design tradeoffs, and engineering decisions. Ships a specialist agent plus Agent Skills for evidence-first review, bounded authority, replayable reasoning, complexity budgets, and pattern fidelity. Jason is the brains; Jay is the labor.",
       "author": {
         "name": "Jason Wisdom",
         "email": ""
