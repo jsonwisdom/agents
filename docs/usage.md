@@ -153,6 +153,7 @@ Claude Code automatically selects and coordinates the appropriate agents based o
 
 | Command                                            | Description                                              |
 | -------------------------------------------------- | -------------------------------------------------------- |
+| `/intel-edge-graph:new-graph`                      | Scaffold empty INTEL_EDGE_GRAPH_V0_1; no story population |
 | `/computer-wisdom-assistant:wisdom-review`         | Evidence-first review of a claim, diff, or "done" statement |
 | `/computer-wisdom-assistant:tradeoff-card`         | Replayable tradeoff card with complexity cost and required evidence |
 | `/x-wisdom:x-read`                                 | Observed-evidence report from public X posts, threads, or search |
@@ -401,11 +402,11 @@ User: "Implement Kubernetes deployment with Helm"
 → Result: Production-grade K8s manifests with Helm charts
 ```
 
-See [Agent Skills](./agent-skills.md) for details on the 170 specialized skills.
+See [Agent Skills](./agent-skills.md) for details on the 171 specialized skills.
 
 ## See Also
 
 - [Agent Skills](./agent-skills.md) - Specialized knowledge packages
 - [Agent Reference](./agents.md) - Complete agent catalog
-- [Plugin Reference](./plugins.md) - All 100 marketplace plugins
+- [Plugin Reference](./plugins.md) - All 101 marketplace plugins
 - [Architecture](./architecture.md) - Design principles

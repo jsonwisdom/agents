@@ -6,7 +6,7 @@
     "url": "https://github.com/wshobson"
   },
   "metadata": {
-    "description": "Production-ready workflow orchestration with 100 marketplace plugins, 207 local specialized agents, and 170 local skills - optimized for granular installation and minimal token usage",
+    "description": "Production-ready workflow orchestration with 101 marketplace plugins, 208 local specialized agents, and 171 local skills - optimized for granular installation and minimal token usage",
     "version": "1.7.1"
   },
   "plugins": [
@@ -1179,6 +1179,30 @@
         "human-approval",
         "pr-review",
         "ci-guard"
+      ]
+    },
+    {
+      "name": "intel-edge-graph",
+      "source": "./plugins/intel-edge-graph",
+      "description": "Foreign-graph lab for intel stories. Mirrors FAMILY edge-graph rigor without binding family nodes. Edges stay DECLARED until a real receipt_sha256 exists. Jason is the brains; Jay is the labor.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Jason Wisdom",
+        "url": "https://github.com/jsonwisdom"
+      },
+      "homepage": "https://github.com/jsonwisdom",
+      "license": "MIT",
+      "category": "governance",
+      "keywords": [
+        "intel",
+        "graph",
+        "evidence",
+        "receipts",
+        "governance",
+        "witness",
+        "hold",
+        "authority",
+        "family-membrane"
       ]
     },
     {

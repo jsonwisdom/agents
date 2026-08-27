@@ -1,0 +1,12 @@
+{
+  "name": "intel-edge-graph",
+  "displayName": "Intel Edge Graph",
+  "version": "0.1.0",
+  "description": "Foreign-graph lab for intel stories. Mirrors FAMILY edge-graph rigor without binding family nodes. Edges stay DECLARED until a real receipt_sha256 exists. Jason is the brains; Jay is the labor.",
+  "author": {
+    "name": "Jason Wisdom",
+    "email": ""
+  },
+  "homepage": "https://github.com/jsonwisdom",
+  "license": "MIT"
+}

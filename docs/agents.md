@@ -1,6 +1,6 @@
 # Agent Reference
 
-Complete reference for all **207 local specialized AI agents** organized by category with model assignments.
+Complete reference for all **208 local specialized AI agents** organized by category with model assignments.
 
 ## Agent Categories
 
@@ -221,6 +221,7 @@ Complete reference for all **207 local specialized AI agents** organized by cate
 | [payment-integration](../plugins/payment-processing/agents/payment-integration.md)      | sonnet | Payment processor integration (Stripe, PayPal)          |
 | [legacy-modernizer](../plugins/framework-migration/agents/legacy-modernizer.md)         | sonnet | Legacy code refactoring and modernization               |
 | [context-manager](../plugins/agent-orchestration/agents/context-manager.md)             | haiku  | Multi-agent context management                          |
+| [intel-edge-graph-witness](../plugins/intel-edge-graph/agents/intel-edge-graph-witness.md) | inherit | Witness-only intel edge-graph classifier; no family bind |
 | [computer-wisdom-assistant](../plugins/computer-wisdom-assistant/agents/computer-wisdom-assistant.md) | inherit | Evidence-first judgment, bounded authority, replayable determinations, complexity budgets |
 | [fork-coordinator](../plugins/agent-fork-coordinator/agents/fork-coordinator.md) | inherit | Witness-only bounded subagent research and debug coordination |
 | [receipt-auditor](../plugins/receipt-governance/agents/receipt-auditor.md) | inherit | Receipt-first review of PRs, commits, workflows, and technical claims |
@@ -242,7 +243,7 @@ Agents are assigned to specific Claude models based on task complexity and compu
 | Opus    | 54          | Critical architecture, security, code review, production coding |
 | Sonnet  | 68          | Complex tasks, support with intelligence                        |
 | Haiku   | 25          | Fast operational tasks                                          |
-| Inherit | 60          | Complex tasks where the user chooses the model at runtime       |
+| Inherit | 61          | Complex tasks where the user chooses the model at runtime       |
 
 ### Model Selection Criteria
 

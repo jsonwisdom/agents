@@ -1,6 +1,6 @@
 # Agent Skills
 
-Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **170 local specialized skills** across 49 plugins, enabling progressive disclosure and efficient token usage.
+Agent Skills are modular packages that extend Claude's capabilities with specialized domain knowledge, following Anthropic's [Agent Skills Specification](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md). This plugin ecosystem includes **171 local specialized skills** across 50 plugins, enabling progressive disclosure and efficient token usage.
 
 ## Overview
 
@@ -342,6 +342,12 @@ Skills provide Claude with deep expertise in specific domains without loading ev
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **protect-mcp-setup**  | Configure Cedar policy enforcement and Ed25519 signed receipts for tool calls; example policies for research/dev/production  |
 
+### Intel Edge Graph (1 skill)
+
+| Skill                | Description                                                                                          |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| **intel-edge-graph** | Foreign intel-story graph with FAMILY-mirror rigor; DECLARED until receipt_sha256; no family bind    |
+
 ### Computer Wisdom Assistant (4 skills)
 
 | Skill                       | Description                                                                                          |
@@ -415,7 +421,7 @@ fastapi-templates skill → Supplies production-ready templates
 
 ## Specification Compliance
 
-All 170 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
+All 171 skills follow the [Agent Skills Specification](https://agentskills.io/specification):
 
 - ✓ Required `name` field (hyphen-case)
 - ✓ Required `description` field with "Use when" clause

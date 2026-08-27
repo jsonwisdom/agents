@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jsonwisdom/agents/plugins/intel-edge-graph/skills/intel-edge-graph/references/INTEL_EDGE_GRAPH_V0_1.schema.json",
+  "title": "INTEL_EDGE_GRAPH_V0_1",
+  "description": "Foreign intel-story graph. Mirrors JOY FAMILY_EDGE_GRAPH rigor. Does not bind family nodes, wallets, or coins. VERIFIED requires a real receipt_sha256. Silent inference is blocked.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "graph_id",
+    "version",
+    "created_at",
+    "classification",
+    "family_bind",
+    "nodes",
+    "edges",
+    "invariants"
+  ],
+  "properties": {
+    "graph_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier for this intel graph instance"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v0\\.1(\\.\\d+)?$",
+      "description": "Semantic version of this graph instance against schema v0.1"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "const": "INTEL_STORY_GRAPH"
+    },
+    "source_scope": {
+      "type": "string",
+      "enum": ["USER_DECLARED_BASELINE", "DOCUMENT_SOURCE_BOUND", "EMPTY_SCAFFOLD"]
+    },
+    "family_bind": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must remain false. This graph never joins FAMILY_EDGE_GRAPH."
+    },
+    "forbidden_node_ids": {
+      "type": "array",
+      "description": "Node IDs that must never appear here (FAMILY graph ids, wallets, coins).",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "invariants": {
+      "$ref": "#/$defs/invariants"
+    },
+    "sealed_invariants": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named sealed rules. Copy from the empty instance; do not drop them."
+    }
+  },
+  "$defs": {
+    "invariants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_created",
+        "facts_promoted",
+        "edges_inferred",
+        "silent_inference",
+        "family_bind"
+      ],
+      "properties": {
+        "authority_created": {
+          "type": "boolean",
+          "description": "Jason-gated. Default false. VERIFIED edges do not flip this."
+        },
+        "facts_promoted": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of facts promoted out of DECLARED. v0.1 lab default is 0."
+        },
+        "edges_inferred": {
+          "type": "integer",
+          "const": 0,
+          "description": "Inferred edges are forbidden. Always 0."
+        },
+        "silent_inference": {
+          "type": "string",
+          "const": "BLOCKED"
+        },
+        "family_bind": {
+          "type": "boolean",
+          "const": false
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node_id", "kind", "label"],
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^INTEL_[A-Z0-9_]+$",
+          "description": "Must use INTEL_ prefix. Must not equal a FAMILY node_id."
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "OUTLET",
+            "OFFICIAL",
+            "STATE_ENTITY",
+            "EVENT",
+            "DOCUMENT",
+            "LOCATION"
+          ]
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_type"],
+      "properties": {
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "OFFICIAL_TRANSCRIPT",
+            "ON_RECORD_QUOTE",
+            "ANONYMOUS_SOURCE",
+            "PRESS_SUMMARY",
+            "PHOTO_VIDEO",
+            "TECHNICAL_SENSOR",
+            "FLIGHT_TRACK",
+            "DOCUMENT_LEAK"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "description": "URL, document ID, or citation handle. Required for VERIFIED."
+        },
+        "receipt_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 of the underlying receipt bytes. Required for VERIFIED. Do not invent."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edge_id",
+        "source_node",
+        "target_node",
+        "predicate",
+        "origin",
+        "evidence",
+        "status"
+      ],
+      "properties": {
+        "edge_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^INTEL_EDGE_[A-Z0-9_]+$"
+        },
+        "source_node": {
+          "type": "string",
+          "pattern": "^INTEL_[A-Z0-9_]+$"
+        },
+        "target_node": {
+          "type": "string",
+          "pattern": "^INTEL_[A-Z0-9_]+$"
+        },
+        "predicate": {
+          "type": "string",
+          "enum": [
+            "CLAIMS",
+            "REPORTS",
+            "QUOTES",
+            "ATTRIBUTES_MOTIVE",
+            "DESCRIBES_EVENT",
+            "CORROBORATES",
+            "DISPUTES"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "USER_DECLARED",
+            "DOCUMENT_SOURCE_BOUND",
+            "ON_RECORD_QUOTE_BOUND",
+            "EXPLICIT_HOLD"
+          ],
+          "description": "MACHINE_GENERATED, ADJACENCY_DERIVED, STORY_FORM_DERIVED, FAMILY_INHERITED, and SOCIAL_EXPECTATION_DERIVED are forbidden."
+        },
+        "evidence": { "$ref": "#/$defs/evidence" },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Advisory only. Must not promote status."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["DECLARED", "VERIFIED", "DISPUTED", "REJECTED", "HOLD"]
+        },
+        "authority_created": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "VERIFIED" } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "predicate": {
+                "not": { "const": "ATTRIBUTES_MOTIVE" }
+              },
+              "origin": {
+                "enum": ["DOCUMENT_SOURCE_BOUND", "ON_RECORD_QUOTE_BOUND"]
+              },
+              "evidence": {
+                "required": ["evidence_type", "source_ref", "receipt_sha256"],
+                "properties": {
+                  "evidence_type": {
+                    "not": {
+                      "enum": ["ANONYMOUS_SOURCE", "PRESS_SUMMARY"]
+                    }
+                  },
+                  "receipt_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "status": { "const": "HOLD" } },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "origin": { "const": "EXPLICIT_HOLD" }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
