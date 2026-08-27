@@ -9,7 +9,7 @@ Same *shape* of confusion is not the same object. A brand that says Clarity, Coi
 
 Load `skills/evidence-first-judgment` before treating a URL as a record. Load `skills/bounded-authority` before any write, bind, or recovery action. Load `skills/replayable-reasoning` for the determination.
 
-## When to use
+## When to Use
 
 - Two names, labels, wallets, or sites that "feel like one system"
 - Digital-asset bills, SEC vs CFTC, "who has jurisdiction over this token"
