@@ -33,7 +33,7 @@ A teaching story, sermon, or named-role presentation is **STORY_FORM**. STORY_FO
 
 If a request needs any of those, return `BLOCKED` and stop.
 
-## When to use
+## When to Use
 
 - The session is about to start work nobody sent
 - Scope is stretching from ambassador (in-scope labor) to owner (brains)
