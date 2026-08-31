@@ -1,0 +1,159 @@
+{
+  "name": "base-erc1155-state-read",
+  "version": "0.1.0",
+  "description": "Read-only MCP server spec for selector-explicit ERC1155 state reads chained from free-only transaction and log surfaces. This is separate from the trace-chained base-zora-erc1155 adapter.",
+  "adapter_id": "base-erc1155-state-read",
+  "surface_level": "THREE_SURFACE_V0_2",
+  "receipt_type": "FREE_ONLY_THREE_SURFACE_RECEIPT_V0_2",
+  "authority": false,
+  "free_only": true,
+  "no_fake_green": true,
+  "transport": {
+    "type": "stdio",
+    "command": "base-erc1155-state-read-mcp",
+    "args": []
+  },
+  "permission_boundary": {
+    "mode": "read-only",
+    "scope": "base:erc1155:read",
+    "disallowed_actions": [
+      "mint",
+      "transfer",
+      "setApprovalForAll",
+      "safeTransferFrom",
+      "contract_write",
+      "deployment",
+      "upgrade",
+      "signature_request"
+    ],
+    "operator_approval_required_for_write": true
+  },
+  "chain_targets": [
+    {
+      "name": "base-mainnet",
+      "chain_id": 8453
+    }
+  ],
+  "tools": [
+    {
+      "name": "read_erc1155_state_surface",
+      "description": "Read selector-explicit ERC1155 metadata, balance, and optional supply surfaces using free eth_call evidence. Intended to run after TX_RECEIPT_SURFACE and LOG_SURFACE identify an ERC1155-adjacent surface.",
+      "read_only": true,
+      "surface_level": "THREE_SURFACE_V0_2",
+      "receipt_type": "FREE_ONLY_THREE_SURFACE_RECEIPT_V0_2",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "chain_id",
+          "token_contract",
+          "token_id",
+          "holder_address",
+          "parent_tx_hash"
+        ],
+        "properties": {
+          "chain_id": {
+            "type": "integer",
+            "const": 8453
+          },
+          "token_contract": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "token_id": {
+            "type": "string"
+          },
+          "holder_address": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "parent_tx_hash": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "block_tag": {
+            "type": "string",
+            "description": "Block number or block tag used for the read. Prefer parent receipt block number when available."
+          }
+        }
+      },
+      "rpc_calls": [
+        {
+          "method": "eth_getCode",
+          "purpose": "observe contract code presence"
+        },
+        {
+          "method": "eth_call",
+          "selector": "uri(uint256)",
+          "selector_hex": "0x0e89341c",
+          "purpose": "observe ERC1155 token URI surface for the supplied token_id"
+        },
+        {
+          "method": "eth_call",
+          "selector": "balanceOf(address,uint256)",
+          "selector_hex": "0x00fdd58e",
+          "purpose": "observe ERC1155 balance surface for the supplied holder_address and token_id"
+        },
+        {
+          "method": "eth_call",
+          "selector": "totalSupply(uint256)",
+          "selector_hex": "0xbd85b039",
+          "optional": true,
+          "purpose": "observe ERC1155 totalSupply surface for the supplied token_id if implemented"
+        }
+      ]
+    }
+  ],
+  "receipt_logging": {
+    "required": true,
+    "fields": [
+      "receipt_type",
+      "status",
+      "authority",
+      "free_only",
+      "no_fake_green",
+      "chain",
+      "chain_id",
+      "source_tx",
+      "contract",
+      "token_id",
+      "holder",
+      "trace",
+      "calls",
+      "boundary"
+    ],
+    "authority": false,
+    "free_only": true,
+    "no_fake_green": true
+  },
+  "output_boundary": {
+    "allowed_claims": [
+      "transaction receipt observed",
+      "logs observed and classified",
+      "selector-explicit state read observed",
+      "contract code observed",
+      "uri observed",
+      "balanceOf observed for address and token_id at read time",
+      "totalSupply observed for token_id if method exists"
+    ],
+    "forbidden_claims": [
+      "wallet control from balance",
+      "legal ownership from balance",
+      "creator identity from address",
+      "token authenticity from URI alone",
+      "sale or payment semantics",
+      "internal call structure",
+      "trace semantics"
+    ],
+    "authority": false,
+    "free_only": true,
+    "no_fake_green": true
+  },
+  "boundary": {
+    "debug_traceTransaction": "not_used",
+    "internal_calls_observed": false,
+    "wallet_control_claim": false,
+    "creator_identity_claim": false,
+    "token_authenticity_claim": false,
+    "payment_or_sale_claim": false
+  }
+}
